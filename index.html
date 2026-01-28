@@ -1,0 +1,3093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athens Edition 2026 | Locum's Nest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d9488;
+            --primary-dark: #115e59;
+            --primary-light: #5eead4;
+            --accent: #14b8a6;
+            --gold: #d4af37;
+            --gold-light: #f4e4a6;
+            --white: #ffffff;
+            --off-white: #f8fafc;
+            --gray-50: #f9fafb;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-800);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0.75rem 2rem;
+            background: rgba(255, 255, 255, 0.98);
+            border-bottom: 1px solid var(--gray-200);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        nav.visible {
+            transform: translateY(0);
+        }
+
+        nav .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .nav-logo {
+            height: 32px;
+            width: auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--accent) 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1555993539-1732b0258235?w=1920&q=80') center/cover;
+            opacity: 0.15;
+        }
+
+        /* Floating particles */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 40% 40%, rgba(212, 175, 55, 0.2) 0%, transparent 30%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        /* Greek key border */
+        .greek-border {
+            height: 12px;
+            background:
+                linear-gradient(90deg, var(--primary) 25%, transparent 25%) 0 0 / 20px 6px,
+                linear-gradient(90deg, transparent 75%, var(--primary) 75%) 0 0 / 20px 6px,
+                linear-gradient(90deg, var(--primary) 25%, transparent 25%) 10px 6px / 20px 6px,
+                linear-gradient(90deg, transparent 75%, var(--primary) 75%) 10px 6px / 20px 6px;
+            background-repeat: repeat-x;
+            opacity: 0.4;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--white);
+            opacity: 0.7;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--primary-light));
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        /* Confetti */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+        }
+
+        .confetti.active {
+            animation: confetti-fall 3s ease-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                opacity: 1;
+                transform: translateY(-100%) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-logo-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            color: var(--white);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .hero-date {
+            font-size: 1.125rem;
+            color: var(--primary-light);
+            font-weight: 600;
+            margin-bottom: 3rem;
+        }
+
+        /* Countdown */
+        .countdown {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.25rem 1.5rem;
+            border-radius: 12px;
+            min-width: 90px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .countdown-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .countdown-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            color: var(--gray-500);
+            font-size: 1.0625rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Overview Section */
+        #overview {
+            background: var(--gray-50);
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .overview-text h3 {
+            font-size: 1.5rem;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .overview-text p {
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .overview-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .overview-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -15px rgba(13, 148, 136, 0.2);
+            border-color: var(--primary-light);
+        }
+
+        .info-card:hover .info-card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .info-card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            margin: 0 auto 1rem;
+        }
+
+        .info-card-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .info-card h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .info-card p {
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* Schedule Section */
+        #schedule {
+            background: var(--white);
+        }
+
+        .schedule-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2.5rem;
+            background: var(--gray-100);
+            padding: 0.375rem;
+            border-radius: 10px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--gray-600);
+        }
+
+        .tab-btn:hover {
+            color: var(--gray-900);
+        }
+
+        .tab-btn.active {
+            background: var(--white);
+            color: var(--gray-900);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .day-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .day-header h3 {
+            font-size: 1.25rem;
+            color: var(--gray-900);
+            font-weight: 600;
+        }
+
+        .day-header p {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.9375rem;
+        }
+
+        /* Schedule List */
+        .schedule-list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .schedule-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-time {
+            flex-shrink: 0;
+            width: 110px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .schedule-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .schedule-content p {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .schedule-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            color: var(--gray-600);
+            padding: 0.125rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        /* Sessions Section */
+        #sessions {
+            background: var(--gray-50);
+        }
+
+        .booking-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+            padding: 0.875rem 1.5rem;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            transition: all 0.2s ease;
+        }
+
+        .booking-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .booking-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .sessions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .session-item {
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+        }
+
+        .session-header {
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s ease;
+        }
+
+        .session-header:hover {
+            background: var(--gray-50);
+        }
+
+        .session-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .session-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        .session-meta span {
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+        }
+
+        .session-toggle {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .session-toggle svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--gray-500);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .session-item.open .session-toggle {
+            transform: rotate(180deg);
+        }
+
+        .session-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .session-item.open .session-body {
+            max-height: 2500px;
+        }
+
+        .session-body-inner {
+            padding: 0 1.5rem 1.5rem;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .session-body-inner p {
+            color: var(--gray-600);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            margin-top: 1rem;
+        }
+
+        .session-body-inner h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .session-body-inner ul {
+            margin-left: 1.25rem;
+            color: var(--gray-600);
+            font-size: 0.9375rem;
+        }
+
+        .session-body-inner li {
+            margin-bottom: 0.375rem;
+        }
+
+        .session-body-inner em {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .session-body-inner strong {
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        /* Arrivals in Schedule Tab */
+        .arrival-info-box {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .arrival-info-box h4 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .arrival-info-box p {
+            color: var(--gray-600);
+            font-size: 0.9375rem;
+            margin: 0.25rem 0;
+        }
+
+        .maps-link {
+            color: var(--primary);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--primary);
+            transition: all 0.2s ease;
+        }
+
+        .maps-link:hover {
+            color: var(--primary-dark);
+            border-bottom-style: solid;
+        }
+
+        .arrivals-timeline {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .arrival-day-group {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+        }
+
+        .arrival-day-group h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .arrival-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .arrival-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .arrival-time {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 50px;
+            font-size: 0.875rem;
+        }
+
+        .arrival-name {
+            color: var(--gray-700);
+            font-size: 0.9375rem;
+            line-height: 1.5;
+        }
+
+        .welcome-dinner-box {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .welcome-dinner-box p {
+            font-size: 0.9375rem;
+            margin: 0;
+        }
+
+        .welcome-dinner-box strong {
+            font-weight: 600;
+        }
+
+        /* Greek Phrase Section */
+        .greek-phrase-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a3a4a 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .greek-phrase-section::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 10%;
+            font-size: 15rem;
+            font-family: Georgia, serif;
+            color: rgba(94, 234, 212, 0.1);
+            line-height: 1;
+        }
+
+        .greek-phrase-title {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .greek-phrase {
+            font-size: 2rem;
+            font-family: Georgia, serif;
+            font-style: italic;
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .greek-phrase-translation {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 0.5rem;
+        }
+
+        .greek-phrase-meaning {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.7;
+        }
+
+        .greek-phrase-author {
+            font-size: 0.875rem;
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        .phrase-carousel {
+            transition: opacity 0.8s ease;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .phrase-carousel.fade-out {
+            opacity: 0;
+        }
+
+        .phrase-carousel.fade-in {
+            opacity: 1;
+        }
+
+        .phrase-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .phrase-nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .phrase-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.1);
+        }
+
+        .phrase-nav-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--white);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .phrase-counter {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* Discover Athens Section */
+        #discover {
+            background: var(--gray-50);
+        }
+
+        .discover-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .discover-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .discover-card {
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .discover-card:hover {
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .discover-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .discover-card.open .discover-header {
+            border-bottom-color: var(--gray-100);
+        }
+
+        .discover-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .discover-header h3 svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .discover-toggle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .discover-card.open .discover-toggle {
+            background: var(--primary);
+            transform: rotate(180deg);
+        }
+
+        .discover-toggle svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--gray-600);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .discover-card.open .discover-toggle svg {
+            stroke: var(--white);
+        }
+
+        .discover-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .discover-card.open .discover-body {
+            max-height: 1500px;
+        }
+
+        .discover-content {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .discover-content p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .discover-content h4 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin: 1.25rem 0 0.5rem;
+        }
+
+        .discover-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .discover-content li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--gray-600);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .discover-content li:last-child {
+            border-bottom: none;
+        }
+
+        .discover-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        .tip-highlight {
+            background: linear-gradient(135deg, var(--gold-light) 0%, rgba(212, 175, 55, 0.2) 100%);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 3px solid var(--gold);
+        }
+
+        .tip-highlight strong {
+            color: var(--gray-800);
+        }
+
+        .nick-secret {
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            text-align: right;
+        }
+
+        /* Weather Section */
+        #weather {
+            background: var(--white);
+        }
+
+        .weather-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .weather-card {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            border: 1px solid var(--gray-100);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .weather-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+            background: var(--white);
+        }
+
+        .weather-card:hover .weather-icon svg {
+            transform: scale(1.15);
+        }
+
+        .weather-icon svg {
+            transition: transform 0.3s ease;
+        }
+
+        .weather-day {
+            font-weight: 600;
+            color: var(--gray-900);
+            font-size: 0.9375rem;
+        }
+
+        .weather-date {
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+            margin-bottom: 0.75rem;
+        }
+
+        .weather-icon {
+            margin-bottom: 0.75rem;
+        }
+
+        .weather-icon svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--primary);
+        }
+
+        .weather-temp {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .weather-temp span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--gray-500);
+        }
+
+        .weather-desc {
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+            margin-top: 0.25rem;
+        }
+
+        .weather-note {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.8125rem;
+            color: var(--gray-400);
+        }
+
+        /* Packing Section */
+        #packing {
+            background: var(--gray-50);
+        }
+
+        .packing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .packing-category {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--gray-200);
+        }
+
+        .packing-category h3 {
+            font-size: 1rem;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        .packing-list {
+            list-style: none;
+        }
+
+        .packing-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.625rem 0;
+            border-bottom: 1px solid var(--gray-100);
+            cursor: pointer;
+        }
+
+        .packing-item:last-child {
+            border-bottom: none;
+        }
+
+        .packing-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gray-300);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+            flex-shrink: 0;
+        }
+
+        .packing-item.checked .packing-checkbox {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .packing-checkbox svg {
+            width: 12px;
+            height: 12px;
+            stroke: white;
+            fill: none;
+            stroke-width: 3;
+            opacity: 0;
+        }
+
+        .packing-item.checked .packing-checkbox svg {
+            opacity: 1;
+        }
+
+        .packing-item.checked .packing-text {
+            text-decoration: line-through;
+            color: var(--gray-400);
+        }
+
+        .packing-text {
+            color: var(--gray-700);
+            font-size: 0.9375rem;
+        }
+
+        /* Walking Tours Section */
+        #tours {
+            background: var(--white);
+        }
+
+        .tours-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .tour-card {
+            background: var(--gray-50);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+        }
+
+        .tour-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .tour-header:hover {
+            background: var(--gray-100);
+        }
+
+        .tour-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .tour-header h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .tour-duration {
+            font-size: 0.9375rem;
+            color: var(--gray-500);
+        }
+
+        .tour-toggle {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+            border: 1px solid var(--gray-200);
+        }
+
+        .tour-toggle svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--gray-500);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .tour-card.open .tour-toggle {
+            transform: rotate(180deg);
+        }
+
+        .tour-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .tour-card.open .tour-body {
+            max-height: 2000px;
+        }
+
+        .tour-body-inner {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .tour-intro {
+            color: var(--gray-600);
+            font-size: 0.9375rem;
+            margin-bottom: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .tour-stops {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .tour-stop {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .tour-stop-number {
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .tour-stop-content h4 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .tour-stop-content p {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        .tour-map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background 0.2s ease;
+        }
+
+        .tour-map-link:hover {
+            background: var(--primary-dark);
+        }
+
+        .tour-tip {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            border-left: 3px solid var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            color: var(--primary-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--gray-400);
+            font-size: 0.9375rem;
+            line-height: 1.8;
+        }
+
+        .footer-section a {
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-800);
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .overview-image {
+                order: -1;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .weather-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .weather-card:last-child {
+                grid-column: span 2;
+            }
+
+            .packing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            section {
+                padding: 3rem 1.25rem;
+            }
+
+            .hero {
+                padding: 3rem 1.25rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .countdown-item {
+                padding: 1rem;
+                min-width: 70px;
+            }
+
+            .countdown-value {
+                font-size: 1.5rem;
+            }
+
+            .schedule-tabs {
+                flex-wrap: wrap;
+            }
+
+            .schedule-item {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .schedule-time {
+                width: auto;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero-logo-text {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="logo"><img src="https://images.squarespace-cdn.com/content/v1/6409bab361096d0131b79e93/ed559c30-4be0-4225-9bc8-f59e3012e57c/01_LocumsNest+main+logo.png" alt="Locum's Nest" class="nav-logo"></a>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#sessions">Sessions</a></li>
+                <li><a href="#weather">Weather</a></li>
+                <li><a href="#packing">Packing</a></li>
+                <li><a href="#discover">Discover</a></li>
+                <li><a href="#tours">Tours</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-logo-text">Locum's Nest</div>
+            <div class="hero-badge">Company Summit 2026</div>
+            <h1>Athens Edition</h1>
+            <p class="hero-subtitle">Coco-Mat Athens BC Hotel, Greece</p>
+            <p class="hero-date">February 2-6, 2026</p>
+
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-value" id="days">--</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="hours">--</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="minutes">--</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="seconds">--</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <div class="greek-border"></div>
+
+    <!-- Overview Section -->
+    <section id="overview">
+        <div class="container">
+            <div class="overview-grid">
+                <div class="overview-text">
+                    <h3>Executive Summary</h3>
+                    <p>This summit has been designed to be balanced, purposeful, and energising - a mix of whole company moments and smaller group sessions.</p>
+                    <p>Our goal is to build shared understanding and strengthen confidence in our platform across the team.</p>
+                    <p>We hope everyone leaves with greater clarity, stronger connections, and a renewed sense of momentum.</p>
+                </div>
+                <div class="overview-image">
+                    <img src="https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=800&q=80" alt="Athens cityscape with Acropolis">
+                </div>
+            </div>
+
+            <div class="info-cards">
+                <a href="https://maps.app.goo.gl/HZSNNEFsFQGZNfPr6" target="_blank" class="info-card">
+                    <div class="info-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <h4>Location</h4>
+                    <p>Coco-Mat Athens BC Hotel</p>
+                </a>
+                <a href="https://calendar.google.com/calendar/u/2/r/week/2026/2/2" target="_blank" class="info-card">
+                    <div class="info-card-icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </div>
+                    <h4>Duration</h4>
+                    <p>5 Days (Feb 2-6)</p>
+                </a>
+                <a href="https://locumsnest1.charliehr.com/people" target="_blank" class="info-card">
+                    <div class="info-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h4>Team</h4>
+                    <p>Full Company</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="greek-border"></div>
+
+    <!-- Schedule Section -->
+    <section id="schedule">
+        <div class="container">
+            <div class="section-header">
+                <h2>Event Schedule</h2>
+                <p>Four days of strategic planning, collaboration, and team building</p>
+            </div>
+
+            <div class="schedule-tabs">
+                <button class="tab-btn active" data-day="arrival">Arrival Day</button>
+                <button class="tab-btn" data-day="1">Day 1</button>
+                <button class="tab-btn" data-day="2">Day 2</button>
+                <button class="tab-btn" data-day="3">Day 3 & 4</button>
+            </div>
+
+            <!-- Arrival Day -->
+            <div class="tab-content active" id="day-arrival">
+                <div class="day-header">
+                    <h3>Arrival Day</h3>
+                    <p>Monday, February 2nd</p>
+                </div>
+
+                <div class="arrival-info-box">
+                    <h4>Hotel Information</h4>
+                    <p>Your hotel is <strong><a href="https://maps.app.goo.gl/HZSNNEFsFQGZNfPr6" target="_blank" class="maps-link">Coco-Mat Athens BC</a></strong> (please note, there are two Coco-Mat hotels; you're staying in the Athens BC one).</p>
+                    <p>You will be contacted to discuss your transport.</p>
+                </div>
+
+                <div class="arrivals-timeline">
+                    <div class="arrival-day-group">
+                        <h4>Sunday 11 January 2026</h4>
+                        <div class="arrival-list">
+                            <div class="arrival-item">
+                                <span class="arrival-time">18:50</span>
+                                <span class="arrival-name">Maria Vostani</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="arrival-day-group">
+                        <h4>Friday 30 January 2026</h4>
+                        <div class="arrival-list">
+                            <div class="arrival-item">
+                                <span class="arrival-time">01:05</span>
+                                <span class="arrival-name">Nicholas Andreou</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="arrival-day-group">
+                        <h4>Saturday 31 January 2026</h4>
+                        <div class="arrival-list">
+                            <div class="arrival-item">
+                                <span class="arrival-time">09:20</span>
+                                <span class="arrival-name">Kyriacos Mappourides</span>
+                            </div>
+                            <div class="arrival-item">
+                                <span class="arrival-time">19:15</span>
+                                <span class="arrival-name">Ahmed Shahrabani</span>
+                            </div>
+                            <div class="arrival-item">
+                                <span class="arrival-time">19:15</span>
+                                <span class="arrival-name">Maria Elisseou</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="arrival-day-group">
+                        <h4>Sunday 1 February 2026</h4>
+                        <div class="arrival-list">
+                            <div class="arrival-item">
+                                <span class="arrival-time">13:50</span>
+                                <span class="arrival-name">Alexia Souvalioti</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="arrival-day-group">
+                        <h4>Monday 2 February 2026</h4>
+                        <div class="arrival-list">
+                            <div class="arrival-item">
+                                <span class="arrival-time">07:45</span>
+                                <span class="arrival-name">Jennifer Iris Muggleton</span>
+                            </div>
+                            <div class="arrival-item">
+                                <span class="arrival-time">12:10</span>
+                                <span class="arrival-name">Emilios Charalambous, Andreas Galazis, Nikos Kefalas, Rami Abdo, Pavlos Gavrielides, Vasilis Vasiliou</span>
+                            </div>
+                            <div class="arrival-item">
+                                <span class="arrival-time">13:10</span>
+                                <span class="arrival-name">Emma Williamson</span>
+                            </div>
+                            <div class="arrival-item">
+                                <span class="arrival-time">14:00</span>
+                                <span class="arrival-name">Deborah Beck</span>
+                            </div>
+                            <div class="arrival-item">
+                                <span class="arrival-time">14:05</span>
+                                <span class="arrival-name">Claire Emmerson</span>
+                            </div>
+                            <div class="arrival-item">
+                                <span class="arrival-time">14:45</span>
+                                <span class="arrival-name">Panagiotis Nikolaou</span>
+                            </div>
+                            <div class="arrival-item">
+                                <span class="arrival-time">17:30</span>
+                                <span class="arrival-name">Aris Panayiotou, Evripides Achilleos, Panagiotis Papadopoulos, Anna Anastasiadou</span>
+                            </div>
+                            <div class="arrival-item">
+                                <span class="arrival-time">19:10</span>
+                                <span class="arrival-name">Jonathan Hern, Ben Herring, Ellie Sanders, Sue Williams, Joe McNally, Naomi Baron, Lara Houchou</span>
+                            </div>
+                            <div class="arrival-item">
+                                <span class="arrival-time">20:20</span>
+                                <span class="arrival-name">Demis Makris-Colman</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="welcome-dinner-box">
+                    <p>We are organising evening <strong>Welcome Dinner and Drinks</strong> for Monday 2nd February - timings and venue to be confirmed.</p>
+                </div>
+            </div>
+
+            <!-- Day 1 -->
+            <div class="tab-content" id="day-1">
+                <div class="day-header">
+                    <h3>Main Sessions</h3>
+                    <p>Tuesday, February 3rd</p>
+                </div>
+                <div class="schedule-list">
+                    <div class="schedule-item">
+                        <div class="schedule-time">09:00 - 09:30</div>
+                        <div class="schedule-content">
+                            <h4>Welcome to the Summit</h4>
+                            <p>Whole company plenary</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">09:30 - 10:30</div>
+                        <div class="schedule-content">
+                            <h4>Locum's Nest in Numbers</h4>
+                            <p>Presenter: Lara</p>
+                            <span class="schedule-tag">Whole Company</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">10:30 - 10:45</div>
+                        <div class="schedule-content">
+                            <h4>Break</h4>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">10:45 - 11:30</div>
+                        <div class="schedule-content">
+                            <h4>Product Direction and Growth Opportunities in 2026</h4>
+                            <p>Presenters: Nick and Ahmed</p>
+                            <span class="schedule-tag">Whole Company</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">11:30 - 13:30</div>
+                        <div class="schedule-content">
+                            <h4>Breakout Sessions: In-Depth Knowledge Transfer</h4>
+                            <p>A: Platform Walkthrough (Sue & Ben) | B: 2025 Releases (Ellie & Rami) | C: Data & Reporting (Vasilis & Aris)</p>
+                            <span class="schedule-tag">Choose One</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">13:30 - 14:30</div>
+                        <div class="schedule-content">
+                            <h4>Lunch</h4>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">14:30 - 16:30</div>
+                        <div class="schedule-content">
+                            <h4>Afternoon Breakout Sessions</h4>
+                            <p>A: The Asset Challenge (Maria E) | B: From Ideation to Iteration (Evripides)</p>
+                            <span class="schedule-tag">Choose One</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">16:30 - 17:30</div>
+                        <div class="schedule-content">
+                            <h4>Whole Company Debrief</h4>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">19:00</div>
+                        <div class="schedule-content">
+                            <h4>Dinner & Drinks</h4>
+                            <p>Venue TBC</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="tab-content" id="day-2">
+                <div class="day-header">
+                    <h3>Discovery & Strategy</h3>
+                    <p>Wednesday, February 4th</p>
+                </div>
+                <div class="schedule-list">
+                    <div class="schedule-item">
+                        <div class="schedule-time">09:00 - 09:30</div>
+                        <div class="schedule-content">
+                            <h4>Welcome to Day 2</h4>
+                            <p>Whole company plenary</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">09:30 - 10:30</div>
+                        <div class="schedule-content">
+                            <h4>Product Discovery: Rates and Demand Control Part 1</h4>
+                            <p>Facilitator: Pan N</p>
+                            <span class="schedule-tag">Whole Company</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">10:30 - 13:00</div>
+                        <div class="schedule-content">
+                            <h4>Morning Breakout Sessions</h4>
+                            <p>A: Rates and Demand Control Part 2 (Pan N) | B: National Staff Bank Strategy Part 1 (Ahmed)</p>
+                            <span class="schedule-tag">Choose One</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">13:00 - 14:00</div>
+                        <div class="schedule-content">
+                            <h4>Lunch</h4>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">14:00 - 17:00</div>
+                        <div class="schedule-content">
+                            <h4>Afternoon Sessions</h4>
+                            <p>A: Timesheet Self Service Discovery (Aris) | B: National Staff Bank Strategy Part 2 (Ahmed)</p>
+                            <span class="schedule-tag">Choose One</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">17:00 - 17:30</div>
+                        <div class="schedule-content">
+                            <h4>Whole Company Debrief</h4>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">Evening</div>
+                        <div class="schedule-content">
+                            <h4>Dinner & Drinks</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 3 & 4 -->
+            <div class="tab-content" id="day-3">
+                <div class="day-header">
+                    <h3>Exploration & Free Time</h3>
+                    <p>Thursday & Friday, February 5-6</p>
+                </div>
+                <div class="schedule-list">
+                    <div class="schedule-item">
+                        <div class="schedule-time">Thursday 10:00</div>
+                        <div class="schedule-content">
+                            <h4>Optional Walking Tour of Athens</h4>
+                            <p>See Walking Tours section for route options</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">Thursday</div>
+                        <div class="schedule-content">
+                            <h4>Optional Museum Visits</h4>
+                            <p>Parthenon Visit (self-funded) | Acropolis Museum (self-funded)</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">Thursday PM</div>
+                        <div class="schedule-content">
+                            <h4>Team Activities</h4>
+                            <p>Self-organised within teams or cross-team meetings</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">Thu 14:00-16:00</div>
+                        <div class="schedule-content">
+                            <h4>Exec Team Meeting</h4>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">Friday</div>
+                        <div class="schedule-content">
+                            <h4>Free Day</h4>
+                            <p>Explore Athens at your leisure</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-time">Fri 10:00-12:00</div>
+                        <div class="schedule-content">
+                            <h4>Exec Team Meeting</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="greek-border"></div>
+
+    <!-- Sessions Section -->
+    <section id="sessions">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sessions in Detail</h2>
+                <p>Below you can find detailed descriptions of each session. Please remember to book yourselves in the sessions by consulting with your line managers.</p>
+                <a href="https://forms.gle/rDmgdbkhFnv5pwWT7" target="_blank" class="booking-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14l2 2 4-4"/></svg>
+                    Book Your Session Preferences
+                </a>
+            </div>
+
+            <div class="sessions-list">
+                <!-- Session 1 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <div>
+                            <h3>Locum's Nest in Numbers: The Story of Our Business Through Data</h3>
+                            <div class="session-meta">
+                                <span>Presenter: Lara</span>
+                                <span>Day 1 | 09:30-10:30</span>
+                            </div>
+                        </div>
+                        <div class="session-toggle">
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                    <div class="session-body">
+                        <div class="session-body-inner">
+                            <p><strong>Summary:</strong> A whole company view of the business through key metrics, telling the story of our impact, scale, and performance in an engaging, data-led way.</p>
+                            <h4>Full Details</h4>
+                            <p>This whole company session brings the Locum's Nest story to life through numbers. Using an engaging, presentation-led format, the session will walk through the key metrics that define how our platform, teams, and business performed, with a particular focus on 2025.</p>
+                            <p>Data will be presented as a narrative rather than a report, helping everyone understand not just what the numbers are, but what they mean. The session will cover the full breadth of the business, from user and usage statistics to product, support, and company-wide metrics.</p>
+                            <p>Along the way, interactive elements such as live polls or short quizzes will be used to keep energy high and encourage participation, reinforcing key insights in a memorable way.</p>
+                            <p>The aim is to build shared understanding, pride, and context. By seeing the business through a single, coherent set of numbers, teams can better appreciate scale, impact, and progress, and understand how their work contributes to the bigger picture.</p>
+                            <h4>Expected Outcomes</h4>
+                            <ul>
+                                <li>A shared, data-grounded view of the business</li>
+                                <li>Greater clarity on scale, performance, and momentum</li>
+                                <li>Increased engagement through interactive storytelling</li>
+                                <li>Stronger connection between individual teams and company-wide impact</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session 2 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <div>
+                            <h3>Product Direction and Growth Opportunities in 2026</h3>
+                            <div class="session-meta">
+                                <span>Presenters: Nick and Ahmed</span>
+                                <span>Day 1 | 10:45-11:30</span>
+                            </div>
+                        </div>
+                        <div class="session-toggle">
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                    <div class="session-body">
+                        <div class="session-body-inner">
+                            <p><strong>Summary:</strong> A founder-led overview of where we are heading in 2026, outlining our product direction, key growth opportunities, and the priorities that will guide the year ahead.</p>
+                            <h4>Full Details</h4>
+                            <p>This session sets out the product and growth direction for Locum's Nest in 2026. Delivered by the founders, it will connect our mission, market position and long-term ambition with the concrete areas where we will focus our effort over the next year.</p>
+                            <p>The session will look at where we see the biggest opportunities for growth across product, customers and partnerships, how the market is evolving, and what this means for our priorities.</p>
+                            <p>It will also be clear about what is not in scope, helping everyone understand the choices we are making and why focus matters.</p>
+                            <p>This is a framing session for the rest of the summit, grounding subsequent discussions in a shared understanding of direction, intent and trade-offs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session 3 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <div>
+                            <h3>Under the Hoot: Understanding the Platform</h3>
+                            <div class="session-meta">
+                                <span>Facilitators: Sue & Ben, Ellie & Rami, Vasilis & Aris</span>
+                                <span>Day 1 | 11:30-13:30</span>
+                            </div>
+                        </div>
+                        <div class="session-toggle">
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                    <div class="session-body">
+                        <div class="session-body-inner">
+                            <p><strong>Summary:</strong> Three parallel deep dives that build platform fluency, from the end-to-end customer journey to advanced features and future data possibilities.</p>
+                            <h4>Full Details</h4>
+                            <p>These parallel In-Depth Knowledge Transfer sessions are designed to build shared understanding of the Locum's Nest platform at different levels of depth. Together, they cover the full customer journey, the detail behind our newest and most complex capabilities, and the data and reporting that underpin decision making.</p>
+                            <p>The sessions aim to strengthen product fluency across the organisation, align how we talk about the platform with customers, and spark informed thinking about what we can build next.</p>
+
+                            <h4>Track A: End to End Platform Walkthrough</h4>
+                            <p><em>Facilitators: Sue and Ben</em></p>
+                            <p>This session is designed primarily for newer joiners. Participants will experience a full, end-to-end walkthrough of the Locum's Nest platform from a customer-facing perspective, following the typical journey and interactions of our users.</p>
+                            <p>Colleagues from non-front-line teams will also be invited to observe and participate, helping them build familiarity with customer language, tone, and expectations. The session will emphasise how features are explained and demonstrated in practice, providing useful context for teams who design, build, or support the product.</p>
+
+                            <h4>Track B: Deep Dive into 2025 Releases and Advanced Features</h4>
+                            <p><em>Facilitators: Ellie and Rami</em></p>
+                            <p>This session is aimed at more experienced internal users. It will focus on a walkthrough of key 2025 releases, alongside some of our more complex or newer capabilities, including cost-saving features, control mechanisms, and exception reporting.</p>
+                            <p>Beyond understanding functionality, the session will create space to discuss how these features should be positioned, explained, and framed when engaging with end users, ensuring clarity, consistency, and confidence in how we talk about our more advanced products.</p>
+
+                            <h4>Track C: Data, Reporting, and What Is Possible</h4>
+                            <p><em>Facilitators: Vasilis and Aris</em></p>
+                            <p>This session will explore the data and reporting capabilities available within Locum's Nest, examining how reports are currently used internally and with customers.</p>
+                            <p>The discussion will be deliberately exploratory, highlighting existing value while encouraging participants to think creatively about future opportunities and unmet needs. Representatives from the technical teams will join to share context on how data is generated, structured, and constrained, helping bridge understanding between what exists today and what could realistically be developed next.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session 4 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <div>
+                            <h3>The Asset Challenge: 3, 2, 1... Create</h3>
+                            <div class="session-meta">
+                                <span>Facilitator: Maria E</span>
+                                <span>Day 1 | 14:30-16:30</span>
+                            </div>
+                        </div>
+                        <div class="session-toggle">
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                    <div class="session-body">
+                        <div class="session-body-inner">
+                            <p><strong>Summary:</strong> A fast-paced, hands-on production sprint where participating teams collaborate and compete to create real, usable collateral, templates, and assets.</p>
+                            <h4>Full Details</h4>
+                            <p>This workstream is a rapid, execution-focused session involving representatives from all teams. Rather than spending time diagnosing problems in detail, the group will move quickly into the active production of collateral, templates, and standardised materials that can be used immediately.</p>
+                            <p>Participants from sales, ops, engineering, product and marketing will split into small, mixed, competing sub-teams. Each team will be tasked with creating a defined set of materials, for example outbound campaign assets, demo narratives and decks, project plan templates, implementation or launch packs etc.</p>
+                            <p>The competitive format is designed to drive pace, creativity, and pragmatism, while keeping outputs concrete and usable.</p>
+                            <h4>Expected Outputs</h4>
+                            <ul>
+                                <li>A first-version set of live, usable collateral and templates</li>
+                                <li>Clear examples of best practice messaging, structure, and format</li>
+                                <li>Agreement on which assets become standard and what needs iteration</li>
+                                <li>Owners and next steps to finalise, test, and roll out the materials</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session 5 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <div>
+                            <h3>From Ideation to Iteration: Product Development Learnings</h3>
+                            <div class="session-meta">
+                                <span>Facilitator: Evripides</span>
+                                <span>Day 1 | 14:30-16:30</span>
+                            </div>
+                        </div>
+                        <div class="session-toggle">
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                    <div class="session-body">
+                        <div class="session-body-inner">
+                            <p><strong>Summary:</strong> A reflective product session focused on learning what works, what does not, and how we deliver, release, market, sell, and evolve software effectively.</p>
+                            <h4>Full Details</h4>
+                            <p>This workstream focuses on shared learning across the full product development lifecycle, from early ideation and discovery through to delivery, release, adoption and iteration.</p>
+                            <p>The session is not intended to design new processes on the spot, but to surface practical insights from real experience, both what has worked well and where teams have struggled. Participants will reflect on recent initiatives and releases, examining how ideas were generated, shaped, prioritised, scoped, built, marketed/sold and evolved once in the hands of users.</p>
+                            <p>Particular attention will be paid to handovers between stages, decision-making moments, and feedback loops, including how learning from customers and internal teams feeds back into future iterations.</p>
+                            <p>The discussion will aim to create a shared understanding of effective behaviours, tools, and ways of working across product, engineering, design, and implementation teams.</p>
+
+                            <h4>Session Structure</h4>
+                            <p><strong>Section 1 (50 mins):</strong> How to deliver and adopt software effectively, with agility and impact, in an environment where not everything is known upfront and change is constant. At what point should the client-facing, marketing and sales teams be involved?</p>
+                            <p><strong>Section 2 (50 mins):</strong> How to ensure that the pace of product releases is aligned with user expectations and adoption, while accounting for challenges such as change management dynamics and the capacity of teams and users to absorb new functionality.</p>
+                            <p><strong>Section 3 (20 mins):</strong> A discussion on the shared learnings between Section 1 and 2.</p>
+
+                            <h4>Expected Outputs</h4>
+                            <ul>
+                                <li>A shared view of what works well across ideation, delivery, adoption and iteration</li>
+                                <li>Key challenges and failure points observed in recent product work</li>
+                                <li>Agreed learnings and principles to carry forward into future initiatives and agreed areas to keep exploring in further workshops</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session 6 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <div>
+                            <h3>Product Deep Dive: Rates and Demand Control</h3>
+                            <div class="session-meta">
+                                <span>Facilitator: Pan N</span>
+                                <span>Day 2 | 09:30-13:00</span>
+                            </div>
+                        </div>
+                        <div class="session-toggle">
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                    <div class="session-body">
+                        <div class="session-body-inner">
+                            <p><strong>Summary:</strong> A two-part session to surface real-world use cases across the business and define a clear, phased path forward for rates and demand control.</p>
+                            <h4>Full Details</h4>
+                            <p>This workstream focuses on how we manage pay rates and demand today, examining what works well, where challenges remain, and how effectively current tools and processes support real-world scenarios. It will cover rates control, demand management, usability feedback, and a review of our journey to date, including key decisions, trade-offs, and learnings.</p>
+                            <p>The session is deliberately split into two parts. Part 1 is joining our collective understanding of our current state and Part 2 is planning for next steps.</p>
+                            <h4>Part 1: Whole Company Session - Use Cases and Shared Context (1 hour)</h4>
+                            <p>The first hour will be a whole company plenary designed to maximise input and surface as many use cases as possible. The product team will present a concise overview of our journey to date, including what we have built, why certain decisions were made, and what problems we are aiming to solve.</p>
+                            <p>Participants will then contribute examples from across the business, focusing on practical scenarios they encounter with customers or internally. This will include cases that are well supported today, cases that are only partially covered, and important scenarios that are not currently addressed. The emphasis is on breadth of input and shared understanding, rather than solution design.</p>
+                            <h4>Part 2: Product Breakaway - Planning and Solution Shaping (2 hours)</h4>
+                            <p>In the second part, relevant members of the product team and closely involved stakeholders will break away to synthesise the input gathered in the plenary. The group will review themes, prioritise use cases, and discuss usability feedback in more depth.</p>
+                            <p>The focus will be on outlining a clear path forward, including a high-level solution direction and an initial view on phased delivery. This will balance customer impact, operational complexity, and technical feasibility, resulting in a pragmatic plan that can be taken forward into discovery and delivery.</p>
+                            <h4>Expected Outputs</h4>
+                            <ul>
+                                <li>A comprehensive list of real-world use cases across pay rates and demand control</li>
+                                <li>Clear articulation of what is well supported today and where gaps exist</li>
+                                <li>Consolidated usability feedback and key learnings from our journey so far</li>
+                                <li>A high-level solution direction and proposed phased development approach</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session 7 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <div>
+                            <h3>Launching a National Staff Bank: Vision, Strategy, and Path to Reality</h3>
+                            <div class="session-meta">
+                                <span>Facilitator: Ahmed</span>
+                                <span>Day 2 | 10:30-17:00</span>
+                            </div>
+                        </div>
+                        <div class="session-toggle">
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                    <div class="session-body">
+                        <div class="session-body-inner">
+                            <p><strong>Summary:</strong> A multidisciplinary strategy session to imagine a truly national collaborative model and map a clear, milestone-driven route to making it real.</p>
+                            <h4>Full Details</h4>
+                            <p>This multidisciplinary session is focused on shaping a bold, future-facing vision for a truly National Staff Bank. The intent is to step beyond incremental change or rebranding of the current Digital Bank and instead explore what a genuinely national, collaborative model could and should look like in practice.</p>
+                            <p>The session will bring together colleagues from across the business to think openly and creatively about the opportunity. Participants will be encouraged to challenge existing assumptions around scale, governance, participation, incentives, technology, and operating models.</p>
+                            <p>The emphasis in the first part of the session is blue-sky thinking, asking what we would design if we were starting from first principles, informed by our experience but not constrained by current structures.</p>
+                            <p>Building on this shared vision, the session will then shift towards pragmatism. Teams will work to identify the critical building blocks required to make a National Staff Bank real, including product capabilities, operational processes, commercial considerations, partnerships, and change management.</p>
+                            <p>From there, the group will map a clear, staged path from where we are today to the desired future state.</p>
+
+                            <h4>Topics to Explore</h4>
+                            <ul>
+                                <li>Digital Passporting including Stat/Man Training</li>
+                                <li>National Data Benchmarking & Insights</li>
+                                <li>The benefits for Clinicians and their careers</li>
+                                <li>The benefits for Trust stakeholders</li>
+                                <li>Productivity and how to measure it</li>
+                                <li>Predictive analytics and movement trends</li>
+                                <li>Partnerships with the Royal Colleges or otherwise</li>
+                            </ul>
+
+                            <h4>NHS Leaders Launch Committee</h4>
+                            <p>We have a group of 10-12 NHS leaders who have committed to being part of the launch committee for the National Staff Bank. As part of this session, please work together to pull together a brief agenda for that session, which will likely be chaired by an NHS Chief People Officer.</p>
+
+                            <h4>Expected Outputs</h4>
+                            <ul>
+                                <li>A shared vision for a true National Staff Bank</li>
+                                <li>Clear differentiation from the current Digital Collaborative Bank</li>
+                                <li>Identification of core pillars and enabling capabilities</li>
+                                <li>A high-level roadmap with company-wide milestones</li>
+                                <li>Agreed next steps to take the strategy into validation and delivery</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session 8 -->
+                <div class="session-item">
+                    <div class="session-header" onclick="toggleSession(this)">
+                        <div>
+                            <h3>Product Deep Dive: Automating Payroll Runs</h3>
+                            <div class="session-meta">
+                                <span>Facilitator: Aris</span>
+                                <span>Day 2 | 14:00-17:00</span>
+                            </div>
+                        </div>
+                        <div class="session-toggle">
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                    <div class="session-body">
+                        <div class="session-body-inner">
+                            <p><strong>Summary:</strong> A focused working session bringing together product and key stakeholders to review proposed automation solutions, align on what good looks like, and shape practical plans for delivery and launch.</p>
+                            <h4>Full Details</h4>
+                            <p>This focused working session brings together a small group of product team members and key stakeholders from across the business to align on the future of automated payroll runs. The purpose of the session is to review proposed solution approaches, test them against real operational needs, and build shared clarity on what a good outcome looks like.</p>
+                            <p>The session will centre on walking through current solution plans, including assumptions, dependencies, and areas of complexity. Participants will be encouraged to challenge the designs constructively, drawing on their practical experience of payroll, operations, finance, and customer impact.</p>
+                            <p>The discussion will focus on ensuring the proposed approach is robust, scalable, and aligned with how payroll runs need to function in reality.</p>
+                            <p>Beyond solution assessment, the session will also look ahead to delivery and launch. This includes considering rollout strategies, operational readiness, risk management, and how automation will be introduced, supported, and communicated once developed. The aim is to avoid treating launch as an afterthought, and instead design it as an integral part of the solution.</p>
+                            <h4>Expected Outputs</h4>
+                            <ul>
+                                <li>Shared understanding of the proposed payroll automation solutions</li>
+                                <li>Clear definition of what good looks like for automated payroll runs</li>
+                                <li>Identified risks, gaps, and areas requiring further validation</li>
+                                <li>Agreed principles for rollout, launch, and operational readiness</li>
+                                <li>Clear next steps to progress into development and delivery</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weather Section -->
+    <section id="weather">
+        <div class="container">
+            <div class="section-header">
+                <h2>Weather Forecast</h2>
+                <p>Expected conditions during your stay in Athens</p>
+            </div>
+
+            <div class="weather-grid">
+                <a href="https://www.accuweather.com/en/gr/athens/182536/daily-weather-forecast/182536?day=1" target="_blank" class="weather-card">
+                    <div class="weather-day">Monday</div>
+                    <div class="weather-date">Feb 2</div>
+                    <div class="weather-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="4"/>
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                            <path d="M16 16a4 4 0 0 0-8 0" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="weather-temp">17° <span>/ 8°</span></div>
+                    <div class="weather-desc">Partly cloudy</div>
+                </a>
+                <a href="https://www.accuweather.com/en/gr/athens/182536/daily-weather-forecast/182536?day=2" target="_blank" class="weather-card">
+                    <div class="weather-day">Tuesday</div>
+                    <div class="weather-date">Feb 3</div>
+                    <div class="weather-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="4"/>
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                            <path d="M16 16a4 4 0 0 0-8 0" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="weather-temp">18° <span>/ 9°</span></div>
+                    <div class="weather-desc">Partly cloudy</div>
+                </a>
+                <a href="https://www.accuweather.com/en/gr/athens/182536/daily-weather-forecast/182536?day=3" target="_blank" class="weather-card">
+                    <div class="weather-day">Wednesday</div>
+                    <div class="weather-date">Feb 4</div>
+                    <div class="weather-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                        </svg>
+                    </div>
+                    <div class="weather-temp">15° <span>/ 9°</span></div>
+                    <div class="weather-desc">Cloudy</div>
+                </a>
+                <a href="https://www.accuweather.com/en/gr/athens/182536/daily-weather-forecast/182536?day=4" target="_blank" class="weather-card">
+                    <div class="weather-day">Thursday</div>
+                    <div class="weather-date">Feb 5</div>
+                    <div class="weather-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="4"/>
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                        </svg>
+                    </div>
+                    <div class="weather-temp">14° <span>/ 7°</span></div>
+                    <div class="weather-desc">Sunny</div>
+                </a>
+                <a href="https://www.accuweather.com/en/gr/athens/182536/daily-weather-forecast/182536?day=5" target="_blank" class="weather-card">
+                    <div class="weather-day">Friday</div>
+                    <div class="weather-date">Feb 6</div>
+                    <div class="weather-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="4"/>
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                        </svg>
+                    </div>
+                    <div class="weather-temp">13° <span>/ 6°</span></div>
+                    <div class="weather-desc">Sunny</div>
+                </a>
+            </div>
+            <p class="weather-note">Click any day to see live Athens weather forecast</p>
+        </div>
+    </section>
+
+    <!-- Packing Section -->
+    <section id="packing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Packing Guide</h2>
+                <p>Check items as you pack - progress saves automatically</p>
+            </div>
+
+            <div class="packing-grid">
+                <div class="packing-category">
+                    <h3>&#128188; Work Essentials</h3>
+                    <ul class="packing-list">
+                        <li class="packing-item" data-item="laptop">
+                            <div class="packing-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                            <span class="packing-text">Laptop (required)</span>
+                        </li>
+                        <li class="packing-item" data-item="charger">
+                            <div class="packing-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                            <span class="packing-text">Laptop charger</span>
+                        </li>
+                        <li class="packing-item" data-item="notebook">
+                            <div class="packing-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                            <span class="packing-text">Notebook & pen</span>
+                        </li>
+                        <li class="packing-item" data-item="headphones">
+                            <div class="packing-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                            <span class="packing-text">Headphones</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="packing-category">
+                    <h3>&#128084; Clothing</h3>
+                    <ul class="packing-list">
+                        <li class="packing-item" data-item="layers">
+                            <div class="packing-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                            <span class="packing-text">Layers (temps 6-18°C)</span>
+                        </li>
+                        <li class="packing-item" data-item="jacket">
+                            <div class="packing-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                            <span class="packing-text">Medium jacket</span>
+                        </li>
+                        <li class="packing-item" data-item="shoes">
+                            <div class="packing-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                            <span class="packing-text">Comfortable walking shoes</span>
+                        </li>
+                        <li class="packing-item" data-item="smart">
+                            <div class="packing-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                            <span class="packing-text">Smart casual for dinners</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="packing-category">
+                    <h3>&#127890; Essentials</h3>
+                    <ul class="packing-list">
+                        <li class="packing-item" data-item="passport">
+                            <div class="packing-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                            <span class="packing-text">Passport / ID</span>
+                        </li>
+                        <li class="packing-item" data-item="phone">
+                            <div class="packing-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                            <span class="packing-text">Phone & charger</span>
+                        </li>
+                        <li class="packing-item" data-item="adapter">
+                            <div class="packing-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                            <span class="packing-text">EU plug adapter (Type C/F)</span>
+                        </li>
+                        <li class="packing-item" data-item="sunglasses">
+                            <div class="packing-checkbox"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                            <span class="packing-text">Sunglasses</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Greek Phrase of the Day -->
+    <section class="greek-phrase-section">
+        <div class="container">
+            <h2 class="greek-phrase-title">Ancient Greek Dose of the Day</h2>
+            <div class="phrase-carousel" id="phraseCarousel">
+                <p class="greek-phrase" id="greekText"></p>
+                <p class="greek-phrase-translation" id="translationText"></p>
+                <p class="greek-phrase-meaning" id="meaningText"></p>
+                <p class="greek-phrase-author" id="authorText"></p>
+            </div>
+            <div class="phrase-nav">
+                <button class="phrase-nav-btn" id="prevPhrase" aria-label="Previous phrase">
+                    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <span class="phrase-counter" id="phraseCounter">1 / 50</span>
+                <button class="phrase-nav-btn" id="nextPhrase" aria-label="Next phrase">
+                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="greek-border"></div>
+
+    <!-- Discover Athens Section -->
+    <section id="discover">
+        <div class="container">
+            <div class="section-header">
+                <h2>Discover Athens</h2>
+                <p>Everything you need to know about the birthplace of democracy</p>
+            </div>
+
+            <div class="discover-grid">
+                <!-- History of Athens -->
+                <div class="discover-card">
+                    <div class="discover-header" onclick="toggleDiscover(this)">
+                        <h3>
+                            <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 21v-6h6v6"/><path d="M9 9h1M14 9h1M9 13h1M14 13h1"/></svg>
+                            History of Athens
+                        </h3>
+                        <div class="discover-toggle">
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                    <div class="discover-body">
+                        <div class="discover-content">
+                            <p>Athens, named after the goddess Athena, is one of the world's oldest cities with a recorded history spanning over 3,400 years. It is widely regarded as the cradle of Western civilisation and the birthplace of democracy.</p>
+
+                            <h4>Ancient Glory (5th Century BC)</h4>
+                            <p>The "Golden Age of Athens" under Pericles saw the construction of the Parthenon and the flourishing of arts, philosophy, and democracy. This era produced Socrates, Plato, Aristotle, Sophocles, and Euripides.</p>
+
+                            <h4>The Birthplace of Democracy</h4>
+                            <p>Around 508 BC, Cleisthenes introduced demokratia - "rule by the people." Citizens gathered on the Pnyx hill to debate and vote on laws, establishing principles that still guide governments today.</p>
+
+                            <h4>Philosophy & Learning</h4>
+                            <p>Athens was home to Plato's Academy (387 BC) and Aristotle's Lyceum - the first institutions of higher learning in the Western world. These schools shaped Western thought for millennia.</p>
+
+                            <h4>Modern Athens</h4>
+                            <p>After centuries under Roman, Byzantine, and Ottoman rule, Athens became the capital of independent Greece in 1834. Today it's a vibrant metropolis of 3.7 million people, blending ancient monuments with contemporary culture.</p>
+
+                            <div class="tip-highlight">
+                                <strong>Did you know?</strong> The Acropolis has been a place of worship for over 5,000 years - from prehistoric times through ancient Greek religion to a Christian church and an Ottoman mosque.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Athens Insider Tips -->
+                <div class="discover-card">
+                    <div class="discover-header" onclick="toggleDiscover(this)">
+                        <h3>
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                            Athens Insider Tips
+                        </h3>
+                        <div class="discover-toggle">
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                    <div class="discover-body">
+                        <div class="discover-content">
+                            <h4>Best Local Eats</h4>
+                            <ul>
+                                <li>Souvlaki from <strong>Kostas</strong> or <strong>Thanasis</strong>, simple and legendary</li>
+                                <li>Meze and wine at <strong>Oineas</strong> or <strong>Mani Mani</strong> for modern Greek done right</li>
+                                <li>Bougatsa or spanakopita from a neighbourhood bakery, not a tourist café</li>
+                            </ul>
+
+                            <h4>Coffee Culture</h4>
+                            <ul>
+                                <li>Greeks linger, coffee is social, not grab-and-go</li>
+                                <li>Order a <strong>freddo espresso</strong> or <strong>freddo cappuccino</strong>, even in winter</li>
+                                <li>Locals love <strong>Taf Coffee</strong>, <strong>Kudu</strong>, or small spots with outdoor seating</li>
+                            </ul>
+
+                            <h4>Useful Greek Phrases</h4>
+                            <ul>
+                                <li><strong>Yassas</strong> — hello</li>
+                                <li><strong>Efharistó</strong> — thank you</li>
+                                <li><strong>Parakaló</strong> — please or you're welcome</li>
+                                <li><strong>Logariasmó parakaló</strong> — the bill please</li>
+                            </ul>
+
+                            <h4>Pro Tips</h4>
+                            <ul>
+                                <li>Eat late, dinner before 9pm feels early here</li>
+                                <li>Wear good shoes, marble streets are beautiful and slippery</li>
+                                <li>Tap water is safe, bottled is just a habit</li>
+                            </ul>
+
+                            <div class="tip-highlight">
+                                <strong>Local secret:</strong> For the best sunset view of the Acropolis, head to Philopappos Hill, far less crowded than Lycabettus and equally stunning 🌅🏛️
+                            </div>
+
+                            <p class="nick-secret"><em>Nick Secret: These have been generated by AI</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="greek-border"></div>
+
+    <!-- Walking Tours Section -->
+    <section id="tours">
+        <div class="container">
+            <div class="section-header">
+                <h2>Walking Tours</h2>
+                <p>Optional self-guided routes starting from the hotel on Thursday</p>
+            </div>
+
+            <div class="tours-list">
+                <!-- Route A -->
+                <div class="tour-card">
+                    <div class="tour-header" onclick="toggleTour(this)">
+                        <div>
+                            <span class="tour-badge">Full Experience</span>
+                            <h3>A) Full Historic Loop</h3>
+                            <p class="tour-duration">3.5 to 4 hours</p>
+                        </div>
+                        <div class="tour-toggle">
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                    <div class="tour-body">
+                        <div class="tour-body-inner">
+                            <p class="tour-intro">The full story: sacred monuments, theatre, the Acropolis, civic life in the Agora, Roman layers, then Plaka.</p>
+
+                            <div class="tour-stops">
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">1</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Temple of Olympian Zeus</h4>
+                                        <p>One of the largest temples in the ancient world, its surviving columns hint at the ambition of Athenian rulers across centuries.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">2</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Hadrian's Arch</h4>
+                                        <p>A gateway marking the boundary between ancient Athens and the Roman city expansion.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">3</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Acropolis Museum</h4>
+                                        <p>The museum is the modern home of many masterpieces from the Acropolis, designed to present them with the monument in view.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">4</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Theatre of Dionysus</h4>
+                                        <p>The birthplace of Greek tragedy and comedy, where the works of Sophocles, Euripides, and Aristophanes premiered.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">5</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Odeon of Herodes Atticus</h4>
+                                        <p>A stunning Roman-era theatre still used for performances today.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">6</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Acropolis Summit (Parthenon, Erechtheion)</h4>
+                                        <p>The defining symbol of classical Athens. The Parthenon embodies the city's peak artistic and political confidence.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">7</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Areopagus Hill</h4>
+                                        <p>A rocky outcrop that functioned as a prestigious council and court in ancient Athens. Great views of how the sacred Acropolis and civic Agora relate.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">8</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Ancient Agora of Athens</h4>
+                                        <p>The civic heart of ancient Athens - marketplace, meeting place, and center of daily life.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">9</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Roman Agora & Tower of the Winds</h4>
+                                        <p>A later commercial center with the remarkably preserved ancient clocktower.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">10</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Anafiotika</h4>
+                                        <p>Tucked on the Acropolis slopes, this small neighborhood feels island-like in character, showing how the city never stopped being built around its ancient core.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">11</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Choragic Monument of Lysicrates</h4>
+                                        <p>A small but elegant monument celebrating an ancient theatrical victory.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a class="tour-map-link" href="https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Coco+Mat+BC+Athens&destination=Coco+Mat+BC+Athens&waypoints=Temple+of+Olympian+Zeus+Athens|Hadrian%27s+Arch+Athens|Acropolis+Museum|Theatre+of+Dionysus|Odeon+of+Herodes+Atticus|Acropolis+Athens|Areopagus+Hill|Ancient+Agora+of+Athens|Roman+Agora+Athens|Tower+of+the+Winds|Anafiotika|Choragic+Monument+of+Lysicrates" target="_blank">
+                                Open Route in Google Maps &rarr;
+                            </a>
+
+                            <div class="tour-tip">
+                                <strong>Tip:</strong> If you go inside the Acropolis Museum, add 1.5 to 2 hours. Otherwise keep it as a quick exterior stop.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Route B -->
+                <div class="tour-card">
+                    <div class="tour-header" onclick="toggleTour(this)">
+                        <div>
+                            <span class="tour-badge">Recommended</span>
+                            <h3>B) Short Highlights Loop</h3>
+                            <p class="tour-duration">1.5 to 2 hours</p>
+                        </div>
+                        <div class="tour-toggle">
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                    <div class="tour-body">
+                        <div class="tour-body-inner">
+                            <p class="tour-intro">A balanced route covering the key Athens highlights at a comfortable pace, without the full Acropolis climb.</p>
+
+                            <div class="tour-stops">
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">1</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Temple of Olympian Zeus</h4>
+                                        <p>Start with the massive columns of this ancient temple.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">2</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Hadrian's Arch</h4>
+                                        <p>The gateway between old and new Athens.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">3</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Acropolis Museum (exterior or quick look)</h4>
+                                        <p>Even from outside, it frames the Acropolis as a living heritage site.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">4</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Areopagus Hill</h4>
+                                        <p>Climb for panoramic views without the full Acropolis ticket.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">5</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Ancient Agora</h4>
+                                        <p>Walk through the civic heart of ancient Athens.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">6</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Anafiotika</h4>
+                                        <p>A charming detour showing the city's human scale and residential continuity.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">7</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Choragic Monument of Lysicrates</h4>
+                                        <p>End at this elegant ancient monument.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a class="tour-map-link" href="https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Coco+Mat+BC+Athens&destination=Coco+Mat+BC+Athens&waypoints=Temple+of+Olympian+Zeus+Athens|Hadrian%27s+Arch+Athens|Acropolis+Museum|Areopagus+Hill|Ancient+Agora+of+Athens|Anafiotika|Choragic+Monument+of+Lysicrates" target="_blank">
+                                Open Route in Google Maps &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Route C -->
+                <div class="tour-card">
+                    <div class="tour-header" onclick="toggleTour(this)">
+                        <div>
+                            <span class="tour-badge">Quick Option</span>
+                            <h3>C) 30-Minute Essentials</h3>
+                            <p class="tour-duration">30 minutes</p>
+                        </div>
+                        <div class="tour-toggle">
+                            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                    <div class="tour-body">
+                        <div class="tour-body-inner">
+                            <p class="tour-intro">A quick introduction for those with limited time, focusing on the area around the hotel with great Acropolis views.</p>
+
+                            <div class="tour-stops">
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">1</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Temple of Olympian Zeus</h4>
+                                        <p>A quick stop at the massive ancient columns.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">2</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Hadrian's Arch</h4>
+                                        <p>Photo opportunity at this iconic gateway.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">3</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Dionysiou Areopagitou Promenade</h4>
+                                        <p>This pedestrian route traces the Acropolis slopes with effortless views. A modern way to experience the ancient topography.</p>
+                                    </div>
+                                </div>
+                                <div class="tour-stop">
+                                    <div class="tour-stop-number">4</div>
+                                    <div class="tour-stop-content">
+                                        <h4>Acropolis Museum Exterior</h4>
+                                        <p>A fast, modern counterpoint to the ruins, keeping the Acropolis in your line of sight.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a class="tour-map-link" href="https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Coco+Mat+BC+Athens&destination=Coco+Mat+BC+Athens&waypoints=Temple+of+Olympian+Zeus+Athens|Hadrian%27s+Arch+Athens|Dionysiou+Areopagitou|Acropolis+Museum" target="_blank">
+                                Open Route in Google Maps &rarr;
+                            </a>
+
+                            <div class="tour-tip">
+                                <strong>Tip:</strong> If you have 10 extra minutes, linger on the promenade for photos before heading back.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Accommodation</h4>
+                <p>
+                    <strong><a href="https://maps.app.goo.gl/HZSNNEFsFQGZNfPr6" target="_blank" class="maps-link">Coco-Mat Athens BC Hotel</a></strong><br>
+                    Falirou 5, Athens 117 42<br>
+                    Greece
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Event Dates</h4>
+                <p>
+                    <strong>Arrivals:</strong> Monday, Feb 2<br>
+                    <strong>Day 1:</strong> Tuesday, Feb 3<br>
+                    <strong>Day 2:</strong> Wednesday, Feb 4<br>
+                    <strong>Day 3:</strong> Thursday, Feb 5<br>
+                    <strong>Day 4:</strong> Friday, Feb 6
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#schedule">Schedule</a>
+                <a href="#sessions">Session Details</a>
+                <a href="#weather">Weather</a>
+                <a href="#packing">Packing Guide</a>
+                <a href="#tours">Walking Tours</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Athens Edition 2026 | Locum's Nest
+        </div>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const eventDate = new Date('February 2, 2026 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            } else {
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Navigation show/hide on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+        });
+
+        // Schedule tabs
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const day = btn.dataset.day;
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(`day-${day}`).classList.add('active');
+            });
+        });
+
+        // Session accordion
+        function toggleSession(header) {
+            const item = header.parentElement;
+            item.classList.toggle('open');
+        }
+
+        // Tour accordion
+        function toggleTour(header) {
+            const card = header.parentElement;
+            card.classList.toggle('open');
+        }
+
+        // Packing list with localStorage
+        const packingItems = document.querySelectorAll('.packing-item');
+        const savedItems = JSON.parse(localStorage.getItem('athensPacking') || '{}');
+
+        packingItems.forEach(item => {
+            const itemId = item.dataset.item;
+            if (savedItems[itemId]) {
+                item.classList.add('checked');
+            }
+            item.addEventListener('click', () => {
+                item.classList.toggle('checked');
+                savedItems[itemId] = item.classList.contains('checked');
+                localStorage.setItem('athensPacking', JSON.stringify(savedItems));
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Discover Athens toggle
+        function toggleDiscover(header) {
+            const card = header.parentElement;
+            card.classList.toggle('open');
+        }
+
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Confetti animation
+        let confettiTriggered = false;
+        function createConfetti() {
+            if (confettiTriggered) return;
+            confettiTriggered = true;
+
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#0d9488', '#d4af37', '#5eead4', '#14b8a6', '#f4e4a6', '#ffffff'];
+
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+
+                // Random shapes
+                if (Math.random() > 0.5) {
+                    confetti.style.borderRadius = '50%';
+                } else {
+                    confetti.style.width = '8px';
+                    confetti.style.height = '16px';
+                }
+
+                container.appendChild(confetti);
+
+                setTimeout(() => confetti.classList.add('active'), 10);
+
+                // Remove after animation
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+
+        // Check countdown for confetti trigger
+        function checkConfetti() {
+            const eventDate = new Date('February 2, 2026 00:00:00').getTime();
+            const now = new Date().getTime();
+            if (now >= eventDate && !confettiTriggered) {
+                createConfetti();
+            }
+        }
+        setInterval(checkConfetti, 1000);
+
+        // Animated number counting for countdown
+        function animateValue(element, start, end, duration) {
+            const range = end - start;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const value = Math.floor(start + (range * progress));
+                element.textContent = value;
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        // Greek Phrases Carousel
+        const greekPhrases = [
+            { greek: "Γνῶθι σεαυτόν", translation: "Know thyself", meaning: "One of the Delphic maxims inscribed at the Temple of Apollo at Delphi. This ancient wisdom encourages self-examination and understanding one's own character, abilities, and limitations.", author: "Inscribed at the Temple of Apollo, Delphi (6th century BC)" },
+            { greek: "Μέτρον ἄριστον", translation: "Moderation is best", meaning: "Another Delphic maxim teaching that balance and moderation in all things leads to the best life.", author: "Cleobulus of Lindos (6th century BC)" },
+            { greek: "Ἓν οἶδα ὅτι οὐδὲν οἶδα", translation: "I know that I know nothing", meaning: "Socrates' famous declaration of intellectual humility, acknowledging the limits of human knowledge as the beginning of true wisdom.", author: "Socrates (470-399 BC)" },
+            { greek: "Πάντα ῥεῖ", translation: "Everything flows", meaning: "Heraclitus's observation that all things are in constant flux - change is the only constant in life.", author: "Heraclitus (535-475 BC)" },
+            { greek: "Ἀρχὴ ἥμισυ παντός", translation: "The beginning is half of the whole", meaning: "Starting is often the hardest part - once begun, you're already halfway to completion.", author: "Pythagoras (570-495 BC)" },
+            { greek: "Σπεῦδε βραδέως", translation: "Make haste slowly", meaning: "Act with urgency but also with care and deliberation. Speed without wisdom leads to mistakes.", author: "Augustus Caesar, quoting Greek wisdom" },
+            { greek: "Ὁ ἀνεξέταστος βίος οὐ βιωτὸς ἀνθρώπῳ", translation: "The unexamined life is not worth living", meaning: "Socrates' core teaching that self-reflection and questioning are essential to a meaningful human existence.", author: "Socrates (470-399 BC)" },
+            { greek: "Αἰὲν ἀριστεύειν", translation: "Always be the best", meaning: "The Greek ideal of striving for excellence in all endeavours, pursuing arete (virtue/excellence).", author: "Homer, Iliad (8th century BC)" },
+            { greek: "Εὖ πράττειν", translation: "To do well / To fare well", meaning: "The Greek understanding that doing good and living well are inseparable - ethics and happiness are one.", author: "Aristotle (384-322 BC)" },
+            { greek: "Φιλία", translation: "Friendship / Love", meaning: "For the Greeks, friendship was not merely social but a deep bond essential to the good life and civic virtue.", author: "Aristotle, Nicomachean Ethics" },
+            { greek: "Μηδὲν ἄγαν", translation: "Nothing in excess", meaning: "A Delphic maxim warning against extremes - wisdom lies in balance and restraint.", author: "Inscribed at the Temple of Apollo, Delphi" },
+            { greek: "Καιρός", translation: "The right moment", meaning: "The Greeks believed in seizing the opportune moment - timing is everything in action and decision.", author: "Ancient Greek concept" },
+            { greek: "Ἀνάγκη δ᾽ οὐδὲ θεοὶ μάχονται", translation: "Even the gods do not fight against necessity", meaning: "Some things are inevitable - wisdom lies in accepting what cannot be changed.", author: "Simonides (556-468 BC)" },
+            { greek: "Δὸς μοι ποῦ στῶ καὶ κινῶ τὴν γῆν", translation: "Give me a place to stand, and I will move the earth", meaning: "Archimedes' bold declaration about the power of leverage - with the right position, anything is possible.", author: "Archimedes (287-212 BC)" },
+            { greek: "Εὕρηκα", translation: "I have found it!", meaning: "Archimedes' legendary exclamation upon discovering the principle of displacement - the joy of discovery.", author: "Archimedes (287-212 BC)" },
+            { greek: "Ἀνδρῶν γὰρ ἐπιφανῶν πᾶσα γῆ τάφος", translation: "The whole earth is the tomb of famous men", meaning: "Great people are remembered everywhere, not just where they're buried - their legacy transcends place.", author: "Pericles (495-429 BC)" },
+            { greek: "Ἡ ἀρετὴ μέσον", translation: "Virtue is the mean", meaning: "Aristotle's teaching that moral virtue lies between extremes - courage between cowardice and recklessness.", author: "Aristotle, Nicomachean Ethics" },
+            { greek: "Πόλεμος πάντων μὲν πατήρ ἐστι", translation: "War is the father of all things", meaning: "Conflict and opposition drive change and creation - tension produces growth.", author: "Heraclitus (535-475 BC)" },
+            { greek: "Τὸ θαυμάζειν ἀρχὴ τῆς φιλοσοφίας", translation: "Wonder is the beginning of philosophy", meaning: "Philosophy starts with curiosity and amazement at the world around us.", author: "Plato (428-348 BC)" },
+            { greek: "Ψυχῆς ἰατρεῖον", translation: "Hospital for the soul", meaning: "The inscription over the Library of Alexandria - books and learning heal the spirit.", author: "Library of Alexandria" },
+            { greek: "Ὅμοιος ὁμοίῳ φίλος", translation: "Like is friend to like", meaning: "We naturally bond with those similar to ourselves - birds of a feather flock together.", author: "Ancient Greek proverb" },
+            { greek: "Χαλεπὰ τὰ καλά", translation: "Beautiful things are difficult", meaning: "Excellence requires effort - nothing truly worthwhile comes easily.", author: "Plato (428-348 BC)" },
+            { greek: "Φύσιν διδάσκειν", translation: "To teach nature", meaning: "Education should work with natural inclinations, not against them.", author: "Ancient Greek educational philosophy" },
+            { greek: "Ἄνθρωπος μέτρον", translation: "Man is the measure", meaning: "Protagoras's view that truth is relative to the human perspective.", author: "Protagoras (490-420 BC)" },
+            { greek: "Τέχνη μακρή, ὁ δὲ βίος βραχύς", translation: "Art is long, life is short", meaning: "Mastery takes time we don't have - hence the urgency to begin learning now.", author: "Hippocrates (460-370 BC)" },
+            { greek: "Νοῦς ὑγιὴς ἐν σώματι ὑγιεῖ", translation: "A healthy mind in a healthy body", meaning: "Physical and mental wellbeing are interconnected - care for both.", author: "Ancient Greek ideal" },
+            { greek: "Ἀεὶ ὁ θεὸς γεωμετρεῖ", translation: "God always geometrizes", meaning: "The universe is built on mathematical principles - there is order in nature.", author: "Plato (428-348 BC)" },
+            { greek: "Δῶμεν τι καὶ τῇ τύχῃ", translation: "Let us give something to chance", meaning: "Not everything can be planned - leave room for fortune and spontaneity.", author: "Ancient Greek wisdom" },
+            { greek: "Ἐλπὶς ἐγρηγορότων ἐνύπνιον", translation: "Hope is the dream of the waking", meaning: "Hope is a conscious dream - it keeps us moving forward.", author: "Aristotle (384-322 BC)" },
+            { greek: "Φέρε καὶ ἄνεχου", translation: "Bear and endure", meaning: "The Stoic teaching of patience and resilience in the face of hardship.", author: "Epictetus (50-135 AD)" },
+            { greek: "Τὸ εὖ ζῆν", translation: "The good life", meaning: "The ultimate goal of Greek philosophy - living well and flourishing.", author: "Aristotle, Nicomachean Ethics" },
+            { greek: "Πάθει μάθος", translation: "Learning through suffering", meaning: "Wisdom often comes through difficult experiences - pain can be a teacher.", author: "Aeschylus (525-456 BC)" },
+            { greek: "Οἶνος καὶ ἀλήθεια", translation: "Wine and truth", meaning: "In vino veritas - wine reveals the truth hidden within.", author: "Alcaeus (620-580 BC)" },
+            { greek: "Κτῆμα ἐς αἰεί", translation: "A possession for all time", meaning: "Thucydides' description of his history - work that endures across generations.", author: "Thucydides (460-400 BC)" },
+            { greek: "Μελέτη τὸ πᾶν", translation: "Practice is everything", meaning: "Mastery comes through dedicated practice and repetition.", author: "Periander (668-584 BC)" },
+            { greek: "Θάλασσα πάντα πλύνει", translation: "The sea washes away all things", meaning: "Time and nature cleanse and renew - nothing is permanent.", author: "Euripides (480-406 BC)" },
+            { greek: "Ἀρχὴ ἄνδρα δείκνυσι", translation: "Power reveals the man", meaning: "True character is shown when someone gains authority or faces challenges.", author: "Bias of Priene (6th century BC)" },
+            { greek: "Φιλοσοφία βίου κυβερνήτης", translation: "Philosophy is the guide of life", meaning: "Wisdom should steer our decisions and direct our path.", author: "Cicero, quoting Greek thought" },
+            { greek: "Γηράσκω δ᾽ αἰεὶ πολλὰ διδασκόμενος", translation: "I grow old always learning many things", meaning: "Learning never stops - wisdom increases with age and experience.", author: "Solon (638-558 BC)" },
+            { greek: "Ἀεὶ Λιβύη φέρει τι καινόν", translation: "Libya always brings something new", meaning: "There's always something new to discover - the world is full of wonders.", author: "Aristotle (384-322 BC)" },
+            { greek: "Μία χελιδὼν ἔαρ οὐ ποιεῖ", translation: "One swallow does not make a spring", meaning: "A single instance doesn't establish a pattern - be patient for true confirmation.", author: "Aristotle, Nicomachean Ethics" },
+            { greek: "Τὸ κοινὸν ἀγαθόν", translation: "The common good", meaning: "The Greek ideal that the welfare of the community should guide individual action.", author: "Aristotle, Politics" },
+            { greek: "Δημοκρατία", translation: "Democracy", meaning: "Rule by the people - Athens' revolutionary gift to political thought.", author: "Athens, 5th century BC" },
+            { greek: "Ἰσηγορία", translation: "Equal right to speak", meaning: "The democratic principle that all citizens have an equal voice.", author: "Athenian democracy" },
+            { greek: "Παιδεία", translation: "Education / Culture", meaning: "The Greek ideal of comprehensive education forming the complete person.", author: "Ancient Greek educational philosophy" },
+            { greek: "Σωφροσύνη", translation: "Temperance / Sound mind", meaning: "The virtue of self-control, moderation, and knowing one's limits.", author: "Plato, Republic" },
+            { greek: "Εὐδαιμονία", translation: "Flourishing / Happiness", meaning: "The highest human good - not mere pleasure but complete well-being and fulfilment.", author: "Aristotle, Nicomachean Ethics" },
+            { greek: "Λόγος", translation: "Reason / Word", meaning: "The ordering principle of the universe and the human capacity for rational thought.", author: "Heraclitus (535-475 BC)" },
+            { greek: "Κόσμος", translation: "Order / Universe", meaning: "The Greeks saw the universe as an ordered, beautiful whole - kosmos means both.", author: "Pythagoras (570-495 BC)" },
+            { greek: "Ἀρετή", translation: "Virtue / Excellence", meaning: "The highest quality of character - being the best version of oneself.", author: "Central concept in Greek philosophy" }
+        ];
+
+        let currentPhraseIndex = 0;
+        const carousel = document.getElementById('phraseCarousel');
+        const greekText = document.getElementById('greekText');
+        const translationText = document.getElementById('translationText');
+        const meaningText = document.getElementById('meaningText');
+        const authorText = document.getElementById('authorText');
+        const phraseCounter = document.getElementById('phraseCounter');
+        const prevBtn = document.getElementById('prevPhrase');
+        const nextBtn = document.getElementById('nextPhrase');
+
+        function updateCounter() {
+            phraseCounter.textContent = `${currentPhraseIndex + 1} / ${greekPhrases.length}`;
+        }
+
+        function displayPhrase(index) {
+            const phrase = greekPhrases[index];
+            greekText.textContent = `"${phrase.greek}"`;
+            translationText.textContent = `"${phrase.translation}"`;
+            meaningText.textContent = phrase.meaning;
+            authorText.textContent = `— ${phrase.author}`;
+            updateCounter();
+        }
+
+        function goToPhrase(index, direction) {
+            carousel.classList.add('fade-out');
+            setTimeout(() => {
+                currentPhraseIndex = index;
+                displayPhrase(index);
+                carousel.classList.remove('fade-out');
+            }, 400);
+        }
+
+        function nextPhrase() {
+            const newIndex = (currentPhraseIndex + 1) % greekPhrases.length;
+            goToPhrase(newIndex);
+        }
+
+        function prevPhrase() {
+            const newIndex = (currentPhraseIndex - 1 + greekPhrases.length) % greekPhrases.length;
+            goToPhrase(newIndex);
+        }
+
+        // Button event listeners
+        prevBtn.addEventListener('click', prevPhrase);
+        nextBtn.addEventListener('click', nextPhrase);
+
+        // Initialize first phrase
+        displayPhrase(0);
+
+        // Auto-rotate every 10 seconds
+        setInterval(nextPhrase, 10000);
+    </script>
+</body>
+</html>
