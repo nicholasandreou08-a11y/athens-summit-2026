@@ -1556,6 +1556,467 @@
             font-size: 0.875rem;
         }
 
+        /* Athens Through Time Section */
+        #history {
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+        }
+
+        .history-category {
+            margin-bottom: 3rem;
+        }
+
+        .history-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .history-category-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+        }
+
+        .history-category-title svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Day in the Life Timeline */
+        .day-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+
+        .timeline-item {
+            position: relative;
+            padding: 1rem 0 1rem 1.5rem;
+            cursor: pointer;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 1.35rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 3px solid var(--gold);
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .timeline-item:hover::before {
+            background: var(--gold);
+            transform: scale(1.2);
+        }
+
+        .timeline-item.active::before {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-time {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            opacity: 0.8;
+        }
+
+        .timeline-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .timeline-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .timeline-item.active .timeline-content {
+            max-height: 500px;
+            padding-top: 0.5rem;
+        }
+
+        .timeline-content p {
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Perspective Tabs */
+        .perspective-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .perspective-tab {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 100px;
+            background: var(--white);
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .perspective-tab:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .perspective-tab.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--white);
+        }
+
+        .perspective-content {
+            display: none;
+        }
+
+        .perspective-content.active {
+            display: block;
+        }
+
+        /* Monument Cards */
+        .monument-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .monument-card {
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .monument-grid.has-open .monument-card:not(.open) {
+            opacity: 0.5;
+            transform: scale(0.98);
+        }
+
+        .monument-card:hover {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        .monument-card.open {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
+        }
+
+        .monument-header {
+            padding: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .monument-card.open .monument-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+
+        .monument-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--gold-light) 0%, rgba(212, 175, 55, 0.3) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .monument-card.open .monument-icon {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .monument-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 2;
+            transition: all 0.3s ease;
+        }
+
+        .monument-card.open .monument-icon svg {
+            stroke: var(--white);
+        }
+
+        .monument-info {
+            flex: 1;
+        }
+
+        .monument-info h4 {
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 0.25rem;
+            transition: color 0.3s ease;
+        }
+
+        .monument-card.open .monument-info h4 {
+            color: var(--white);
+        }
+
+        .monument-info span {
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+            transition: color 0.3s ease;
+        }
+
+        .monument-card.open .monument-info span {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .monument-toggle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+
+        .monument-card.open .monument-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(180deg);
+        }
+
+        .monument-toggle svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--gray-600);
+            fill: none;
+            stroke-width: 2;
+            transition: stroke 0.3s ease;
+        }
+
+        .monument-card.open .monument-toggle svg {
+            stroke: var(--white);
+        }
+
+        .monument-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .monument-card.open .monument-body {
+            max-height: 1000px;
+        }
+
+        .monument-content {
+            padding: 1.5rem;
+            color: var(--gray-600);
+            line-height: 1.8;
+        }
+
+        .monument-content p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .monument-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .fun-fact {
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.1) 0%, rgba(20, 184, 166, 0.05) 100%);
+            padding: 1.25rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            margin-top: 1.5rem;
+        }
+
+        .fun-fact strong {
+            color: var(--primary-dark);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Modern History Timeline */
+        .modern-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .era-card {
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .era-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--primary) 100%);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .era-card:hover::before {
+            transform: scaleY(0.3);
+        }
+
+        .era-card.open::before {
+            transform: scaleY(1);
+        }
+
+        .modern-timeline.has-open .era-card:not(.open) {
+            opacity: 0.5;
+            transform: scale(0.98);
+        }
+
+        .era-card:hover {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        .era-card.open {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
+            padding-left: 2rem;
+        }
+
+        .era-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .era-header > div:first-child {
+            flex: 1;
+        }
+
+        .era-year {
+            font-size: 0.8125rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .era-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .era-preview {
+            font-size: 0.9375rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        .era-toggle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+
+        .era-card.open .era-toggle {
+            background: var(--primary);
+            transform: rotate(180deg);
+        }
+
+        .era-toggle svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--gray-600);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .era-card.open .era-toggle svg {
+            stroke: var(--white);
+        }
+
+        .era-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), margin 0.3s ease;
+        }
+
+        .era-card.open .era-detail {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+
+        .era-detail p {
+            font-size: 1rem;
+            color: var(--gray-600);
+            line-height: 1.8;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        @media (max-width: 768px) {
+            .day-timeline {
+                padding-left: 1.5rem;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             .overview-grid {
@@ -3060,6 +3521,489 @@
         </div>
     </section>
 
+    <div class="greek-border"></div>
+
+    <!-- Athens Through Time Section -->
+    <section id="history">
+        <div class="container">
+            <div class="section-header">
+                <h2>Athens Through Time</h2>
+                <p>From ancient philosophers to modern resilience - discover the layers of history beneath your feet</p>
+            </div>
+
+            <!-- Day in the Life -->
+            <div class="history-category">
+                <h3 class="history-category-title">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    A Day in the Life of an Ancient Athenian
+                </h3>
+
+                <div class="perspective-tabs">
+                    <button class="perspective-tab active" data-perspective="citizen">Male Citizen</button>
+                    <button class="perspective-tab" data-perspective="woman">Athenian Woman</button>
+                    <button class="perspective-tab" data-perspective="metic">Metic (Foreigner)</button>
+                    <button class="perspective-tab" data-perspective="slave">Enslaved Person</button>
+                </div>
+
+                <!-- Male Citizen Perspective -->
+                <div class="perspective-content active" id="perspective-citizen">
+                    <div class="day-timeline">
+                        <div class="timeline-item active">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Dawn</span>
+                                <span class="timeline-title">Rising & Morning Rituals</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>You wake at first light in your modest home near the Agora. After a simple breakfast of barley bread dipped in wine, you pour a small libation to Zeus Herkeios, protector of the household. Your wife and children remain in the women's quarters - the gynaeceum - as you prepare for your day in public life.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Morning</span>
+                                <span class="timeline-title">The Agora Awakens</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>The Agora buzzes with activity. You browse the stalls - pottery from Corinth, fish from the Piraeus, olives from Attica. But the real business is conversation. You debate yesterday's Assembly vote with a neighbor, hear the latest news from a merchant just arrived from Ionia, and catch a glimpse of Socrates interrogating yet another confident young man about the nature of justice.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Midday</span>
+                                <span class="timeline-title">The Gymnasium</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>You strip naked (gymnos - hence "gymnasium") and oil your body for exercise. Wrestling, running, discus - physical excellence is as important as mental. Afterwards, in the shade of the colonnade, a philosopher lectures on the movement of the stars. Body and mind, both cultivated. This is what it means to be a free Greek.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Afternoon</span>
+                                <span class="timeline-title">Civic Duty</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>Today your name was drawn for jury duty - 6,000 citizens serve each year. You sit with 500 others judging a case of impiety. The accused claims he merely questioned the old stories about the gods. The vote is close. Democracy is exhausting work, but you wouldn't trade it for Persian gold.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Evening</span>
+                                <span class="timeline-title">The Symposium</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>Tonight you're invited to a symposium - a drinking party, but far more. Reclining on couches, you mix wine with water (only barbarians drink it neat). Between cups, guests recite poetry, debate philosophy, play drinking games. A flute-girl plays in the corner. The conversation turns to love, then politics, then love of politics. You stumble home past midnight, your head full of wine and ideas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Woman Perspective -->
+                <div class="perspective-content" id="perspective-woman">
+                    <div class="day-timeline">
+                        <div class="timeline-item active">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Dawn</span>
+                                <span class="timeline-title">The Gynaeceum</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>Your world is the women's quarters - the gynaeceum at the back of the house. You wake surrounded by your children and female slaves. Respectable women rarely leave home except for religious festivals. Your husband has already left; you may not see him until evening.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Morning</span>
+                                <span class="timeline-title">Managing the Household</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>You are the oikodespina - mistress of the household. You distribute the day's rations to slaves, inspect the weaving, ensure the children are fed. Your domain may be confined, but within it, you hold considerable power. You manage the finances, the stores, the servants. A poorly-run household brings shame to everyone.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Midday</span>
+                                <span class="timeline-title">Weaving & Work</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>The loom dominates the main room. Weaving is women's work - sacred, even. Athena herself is goddess of the craft. You weave cloth for your family, but also for religious offerings. The peplos presented to Athena at the Panathenaia is woven by chosen women and girls. In thread, you have a voice.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Afternoon</span>
+                                <span class="timeline-title">The Thesmophoria</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>But today is different - it's the festival of Thesmophoria, sacred to Demeter. For three days, only married women participate. Your husband is forbidden to know what occurs. You process to the sanctuary with other wives, perform secret rites for fertility and the harvest. In religion, women have mysteries that men can never know.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Evening</span>
+                                <span class="timeline-title">Shadows & Stories</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>While your husband reclines at his symposium, you eat separately with the children and slaves. You tell them stories - of Odysseus and Penelope, of Helen and Troy. Your daughter asks why Penelope had to wait twenty years. You have no good answer, only the hope that her future husband will be kind.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Metic Perspective -->
+                <div class="perspective-content" id="perspective-metic">
+                    <div class="day-timeline">
+                        <div class="timeline-item active">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Dawn</span>
+                                <span class="timeline-title">The Outsider's Morning</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>You came from Miletus fifteen years ago, fleeing the Persian advance. Athens welcomed you - for a price. As a metic, a resident alien, you pay a special tax (metoikion) each month. You can never own land, never vote, never hold office. But you can work, trade, and grow rich. Many do.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Morning</span>
+                                <span class="timeline-title">The Workshop</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>Your pottery workshop in the Kerameikos employs twelve men - slaves and free workers alike. Athenian citizens consider trade beneath them; their loss is your gain. Your red-figure vases are famous from Sicily to the Black Sea. An Athenian aristocrat wouldn't shake your hand, but he'll pay handsomely for your work.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Midday</span>
+                                <span class="timeline-title">Banking & Business</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>You meet your banker, Pasion - himself a former slave who bought his freedom and became one of the richest men in Athens. He's now a citizen, granted the privilege for his services to the state. Perhaps one day, if you're useful enough, they'll grant you citizenship too. Perhaps.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Afternoon</span>
+                                <span class="timeline-title">The Price of Protection</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>You need a citizen sponsor (prostates) for any legal business. Today, you're in court defending a contract dispute. You cannot speak - your prostates speaks for you. If war comes, you'll be required to serve in the army, to pay war taxes, to die for Athens. But you cannot vote for war or peace. Taxation without representation, you think, but keep it to yourself.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Evening</span>
+                                <span class="timeline-title">Between Two Worlds</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>You dine with other metics - a Phoenician shipowner, a Thracian armorer, a Syrian banker. You speak Greek, worship Greek gods, raise your children as Greeks. Your grandchildren will likely be the same - permanent outsiders in the city you've built. "We are the ones who make the wheels turn," says the Phoenician. "They just take the credit."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slave Perspective -->
+                <div class="perspective-content" id="perspective-slave">
+                    <div class="day-timeline">
+                        <div class="timeline-item active">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Dawn</span>
+                                <span class="timeline-title">Before the Sun</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>You rise before the family - there is water to fetch, fires to light, bread to bake. You were born in Thrace; captured in a raid when you were eight. That was twenty years ago. You barely remember your mother's face, only that she screamed when they took you. Your name then was different. Now you're called Syros - "the Syrian" - though you've never been to Syria.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Morning</span>
+                                <span class="timeline-title">Work Without End</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>Your master is a craftsman - better than the silver mines, where slaves die within years. You've learned his trade, manage his accounts, bargain with suppliers. He trusts you, as much as any master trusts a slave. Sometimes he almost forgets what you are. You never forget.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Midday</span>
+                                <span class="timeline-title">The Mask of Servitude</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>At the market, a philosopher argues that some men are "natural slaves." You keep your face blank - the essential skill. Inside, you think of your father, a free warrior. You think of what you would do to this philosopher if you could. The thoughts sustain you, even as you bow your head.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Afternoon</span>
+                                <span class="timeline-title">A Peculiar Hope</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>You've saved money - your master allows you to keep a portion of tips from customers. In ten more years, maybe fifteen, you might buy your freedom. Some do. Your friend Pasion was once a slave banker; now he's one of the richest men in Athens, a citizen even. But for every Pasion, there are ten thousand who die in chains. You try not to think about the odds.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="timeline-time">Evening</span>
+                                <span class="timeline-title">Dreams of the Free</span>
+                            </div>
+                            <div class="timeline-content">
+                                <p>In your small room behind the workshop, you listen to the city grow quiet. Somewhere, citizens are drinking and philosophizing about the good life. Tomorrow, as today, you will rise before dawn. But sometimes in dreams, you run through Thracian forests, and your name is your own again. One-third of Athens' population lives like you - invisible, essential, unfree. The birthplace of democracy was built on your back.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Monuments -->
+            <div class="history-category">
+                <h3 class="history-category-title">
+                    <svg viewBox="0 0 24 24"><path d="M3 21h18M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7H3l2-4h14l2 4M5 21V10.85M19 21V10.85M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/></svg>
+                    Key Monuments In-Depth
+                </h3>
+
+                <div class="monument-grid">
+                    <div class="monument-card">
+                        <div class="monument-header">
+                            <div class="monument-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <div class="monument-info">
+                                <h4>The Parthenon</h4>
+                                <span>447-432 BC • Temple of Athena Parthenos</span>
+                            </div>
+                            <div class="monument-toggle">
+                                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </div>
+                        </div>
+                        <div class="monument-body">
+                            <div class="monument-content">
+                                <p>The Parthenon wasn't just a temple - it was a statement. After the Persians burned the Acropolis in 480 BC, Athens rebuilt bigger, bolder, using money from the Delian League (their "allies" might say extorted). The architect Iktinos incorporated subtle optical refinements: columns that lean inward, a floor that curves upward, all to counteract visual distortions and make the building appear perfectly straight.</p>
+                                <p>Inside stood Pheidias' masterpiece - a 12-meter statue of Athena made of gold and ivory worth more than the entire building. It's long gone, melted down or destroyed. The outer frieze depicted the Panathenaic procession; the metopes showed Greeks battling Amazons, gods fighting giants - civilization versus chaos, order versus barbarism.</p>
+                                <div class="fun-fact">
+                                    <strong>The Controversy:</strong> Half the Parthenon's surviving sculptures sit in the British Museum - the "Elgin Marbles." Lord Elgin removed them in 1801-1812 when Greece was under Ottoman rule. Greece has demanded their return for decades. Britain argues they're better preserved in London. The debate embodies colonial legacy and cultural ownership questions that remain unresolved.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="monument-card">
+                        <div class="monument-header">
+                            <div class="monument-icon">
+                                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <div class="monument-info">
+                                <h4>The Erechtheion & Caryatids</h4>
+                                <span>421-406 BC • Sacred to multiple gods</span>
+                            </div>
+                            <div class="monument-toggle">
+                                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </div>
+                        </div>
+                        <div class="monument-body">
+                            <div class="monument-content">
+                                <p>The Erechtheion is weird - intentionally. It sits on uneven ground where Athens' most sacred relics competed for space: the olive tree Athena created to win patronage of the city, the salt spring Poseidon struck with his trident, the tomb of the legendary King Erechtheus. The architects couldn't move any of it, so they built around it all, creating an asymmetrical masterpiece.</p>
+                                <p>The six maidens of the south porch - the Caryatids - are architectural sculpture at its finest. They're not just decorative columns; they're load-bearing structures, each slightly different, their draped robes concealing the engineering that lets them hold up the roof. Why women? Perhaps they represent the women of Karyai, enslaved for siding with Persia. Or perhaps they're priestesses, eternally serving the goddess.</p>
+                                <div class="fun-fact">
+                                    <strong>Where are they now?</strong> Five of the original six Caryatids are in the Acropolis Museum; one is in the British Museum (taken by Elgin). The ones you see on the temple are replicas. When the originals were moved, conservators found that their faces had been eroded by Athens' pollution - they were literally weeping acid tears.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="monument-card">
+                        <div class="monument-header">
+                            <div class="monument-icon">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+                            </div>
+                            <div class="monument-info">
+                                <h4>Theatre of Dionysus</h4>
+                                <span>6th century BC • Birthplace of drama</span>
+                            </div>
+                            <div class="monument-toggle">
+                                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </div>
+                        </div>
+                        <div class="monument-body">
+                            <div class="monument-content">
+                                <p>Theatre was invented here. Not entertainment - religion. The performances were sacred to Dionysus, god of wine and ecstasy. Attending was a civic duty; the poor received state subsidies for tickets. At its peak, 17,000 Athenians would sit here, watching their myths transformed, their assumptions questioned, their certainties shattered.</p>
+                                <p>This is where Aeschylus staged the Oresteia, wrestling with justice and revenge. Where Sophocles' Oedipus discovered the terrible truth. Where Euripides made audiences weep for Medea, a foreign woman driven to infanticide. Where Aristophanes mocked politicians by name, put Socrates in a basket suspended from the ceiling, and imagined women seizing power through a sex strike.</p>
+                                <div class="fun-fact">
+                                    <strong>Method acting, ancient-style:</strong> All roles were played by men wearing masks. The acoustics were so precise that a coin dropped on the orchestra floor could be heard in the back row. The front-row marble seats (still visible) were reserved for priests and dignitaries - ancient VIP seating.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="monument-card">
+                        <div class="monument-header">
+                            <div class="monument-icon">
+                                <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+                            </div>
+                            <div class="monument-info">
+                                <h4>The Ancient Agora</h4>
+                                <span>6th century BC • Heart of democracy</span>
+                            </div>
+                            <div class="monument-toggle">
+                                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </div>
+                        </div>
+                        <div class="monument-body">
+                            <div class="monument-content">
+                                <p>Forget the Acropolis - this is where Athenian life actually happened. The Agora was marketplace, meeting place, and civic center rolled into one. Here citizens debated, voted, shopped, gossiped, and philosophized. Socrates spent his days here, questioning everyone from generals to shoemakers. It was also where they eventually condemned him to death.</p>
+                                <p>The Stoa of Attalos (now reconstructed) gives you a sense of the colonnade-lined streets where Athenians escaped the Mediterranean sun. The Tholos was where 50 representatives ate and slept, always ready for emergencies. The Bouleuterion held the council of 500. And scattered throughout were the small shops and workshops that kept the democracy fed.</p>
+                                <div class="fun-fact">
+                                    <strong>Ostracism:</strong> Once a year, citizens could vote to exile anyone who was getting too powerful. They scratched the name on pottery shards (ostraka) - thousands have been found in the Agora. If 6,000 voted against you, you had ten days to leave Athens for ten years. Democracy's reset button.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="monument-card">
+                        <div class="monument-header">
+                            <div class="monument-icon">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                            </div>
+                            <div class="monument-info">
+                                <h4>Temple of Olympian Zeus</h4>
+                                <span>174 BC - 131 AD • 700 years to build</span>
+                            </div>
+                            <div class="monument-toggle">
+                                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                            </div>
+                        </div>
+                        <div class="monument-body">
+                            <div class="monument-content">
+                                <p>Some projects have scope creep. This one had scope gallop. Started by the tyrant Peisistratos around 515 BC, abandoned when democracy came, resumed by a Hellenistic king in 174 BC, finally finished by the Roman Emperor Hadrian in 131 AD. That's over 600 years of construction - longer than the time from Shakespeare to today.</p>
+                                <p>When complete, it was one of the largest temples in the ancient world: 104 Corinthian columns, each 17 meters tall. Inside sat a massive gold and ivory statue of Zeus, with a smaller one of Hadrian beside it (subtle, Hadrian). Only 15 columns remain standing; a 16th lies where it fell in a storm in 1852. The rest were quarried for building material over centuries.</p>
+                                <div class="fun-fact">
+                                    <strong>Hadrian's ego:</strong> Hadrian loved Athens. He finished the temple, built a library, and constructed an arch (still standing) with an inscription: one side reads "This is Athens, the ancient city of Theseus," the other "This is the city of Hadrian, not of Theseus." Not exactly humble.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modern History -->
+            <div class="history-category">
+                <h3 class="history-category-title">
+                    <svg viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+                    Modern Athens: From Revolution to Rebirth
+                </h3>
+
+                <div class="modern-timeline">
+                    <div class="era-card">
+                        <div class="era-header">
+                            <div>
+                                <div class="era-year">1821</div>
+                                <div class="era-title">War of Independence</div>
+                                <div class="era-preview">Greece rises against 400 years of Ottoman rule</div>
+                            </div>
+                            <div class="era-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                        </div>
+                        <div class="era-detail">
+                            <p>On March 25, 1821, Bishop Germanos raised the flag of revolution at Agia Lavra monastery. The Greek War of Independence captivated European romantics - Lord Byron died at Missolonghi fighting for the cause. Athens changed hands multiple times; the Acropolis was besieged twice. By 1832, with help from Britain, France, and Russia, Greece was free - but Athens lay in ruins, its population barely 4,000.</p>
+                        </div>
+                    </div>
+
+                    <div class="era-card">
+                        <div class="era-header">
+                            <div>
+                                <div class="era-year">1834</div>
+                                <div class="era-title">Athens Becomes Capital</div>
+                                <div class="era-preview">A village transforms into a nation's heart</div>
+                            </div>
+                            <div class="era-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                        </div>
+                        <div class="era-detail">
+                            <p>When Athens was named capital, it was a dusty village of goats and ruins. King Otto (a Bavarian teenager imposed by the Great Powers) brought German architects who laid out a neoclassical city. The "Old Palace" (now Parliament) rose on Syntagma Square. Grand buildings evoked ancient glory, papering over the awkward truth that modern Greece was a European invention as much as a Greek one.</p>
+                        </div>
+                    </div>
+
+                    <div class="era-card">
+                        <div class="era-header">
+                            <div>
+                                <div class="era-year">1896</div>
+                                <div class="era-title">First Modern Olympics</div>
+                                <div class="era-preview">Ancient games reborn in their homeland</div>
+                            </div>
+                            <div class="era-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                        </div>
+                        <div class="era-detail">
+                            <p>Baron Pierre de Coubertin's dream was realized in the rebuilt Panathenaic Stadium - the only stadium in the world made entirely of marble. Greece was nearly bankrupt, but a wealthy benefactor funded the games. 14 nations participated. A Greek shepherd named Spyridon Louis won the marathon (a race invented for these Olympics), becoming an instant national hero.</p>
+                        </div>
+                    </div>
+
+                    <div class="era-card">
+                        <div class="era-header">
+                            <div>
+                                <div class="era-year">1941-1944</div>
+                                <div class="era-title">Nazi Occupation</div>
+                                <div class="era-preview">Resistance and famine under the swastika</div>
+                            </div>
+                            <div class="era-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                        </div>
+                        <div class="era-detail">
+                            <p>When Germany invaded, the Nazis raised their flag on the Acropolis. Two young men, Manolis Glezos and Apostolos Santas, tore it down in one of the first acts of resistance in occupied Europe. The occupation brought devastating famine - over 300,000 Greeks died in Athens alone. Yet resistance flourished, and Greece tied down Axis divisions that might have fought elsewhere.</p>
+                        </div>
+                    </div>
+
+                    <div class="era-card">
+                        <div class="era-header">
+                            <div>
+                                <div class="era-year">1967-1974</div>
+                                <div class="era-title">Military Junta</div>
+                                <div class="era-preview">The colonels seize power, students resist</div>
+                            </div>
+                            <div class="era-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                        </div>
+                        <div class="era-detail">
+                            <p>A military coup suspended democracy. The junta imprisoned opponents, censored the press, and banned long hair and miniskirts. In November 1973, students occupied the Athens Polytechnic. Tanks crashed through the gates; dozens died. The massacre galvanized opposition. When the junta's Cyprus adventure provoked a Turkish invasion, the colonels collapsed. November 17 remains a day of protest marches past the US Embassy (America supported the junta).</p>
+                        </div>
+                    </div>
+
+                    <div class="era-card">
+                        <div class="era-header">
+                            <div>
+                                <div class="era-year">2004</div>
+                                <div class="era-title">Olympic Transformation</div>
+                                <div class="era-preview">A city reinvents itself for the world stage</div>
+                            </div>
+                            <div class="era-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                        </div>
+                        <div class="era-detail">
+                            <p>The 2004 Olympics were Athens' coming-out party after decades of chaos and pollution. A new airport, a metro system (yielding thousands of archaeological finds), pedestrianized streets around the Acropolis, the stunning new Acropolis Museum - the city transformed. The opening ceremony featured a glowing Cycladic figure rising from a pool, connecting ancient and modern. The debt from these games, however, contributed to crises to come.</p>
+                        </div>
+                    </div>
+
+                    <div class="era-card">
+                        <div class="era-header">
+                            <div>
+                                <div class="era-year">2010s</div>
+                                <div class="era-title">Crisis and Resilience</div>
+                                <div class="era-preview">Economic collapse spawns creative rebirth</div>
+                            </div>
+                            <div class="era-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                        </div>
+                        <div class="era-detail">
+                            <p>The debt crisis devastated Greece. Unemployment hit 27%; youth unemployment 60%. Athens saw protests, riots, shuttered shops. But something else emerged: a remarkable creative resilience. Street art transformed grey walls into galleries. Abandoned buildings became cultural centers. Young entrepreneurs created from necessity. The crisis generation reinvented what it meant to be Athenian.</p>
+                        </div>
+                    </div>
+
+                    <div class="era-card">
+                        <div class="era-header">
+                            <div>
+                                <div class="era-year">Today</div>
+                                <div class="era-title">Athens Now</div>
+                                <div class="era-preview">3.7 million people, ancient and contemporary</div>
+                            </div>
+                            <div class="era-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                        </div>
+                        <div class="era-detail">
+                            <p>Modern Athens is chaotic, loud, graffitied, and alive. It's a city where you can see 2,500-year-old temples from your apartment balcony, where stray dogs have their own metro passes, where dinner doesn't start until 10 PM, where a conversation with a taxi driver might cover philosophy, football, and the failings of government - often simultaneously. It's not a museum. It's a living argument with its own past.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -3260,6 +4204,79 @@
             }
             requestAnimationFrame(update);
         }
+
+        // Athens Through Time - Interactive Elements
+
+        // Timeline items (Day in the Life)
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.closest('.day-timeline');
+                parent.querySelectorAll('.timeline-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+
+        // Perspective tabs
+        document.querySelectorAll('.perspective-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const perspective = tab.dataset.perspective;
+
+                // Update tabs
+                document.querySelectorAll('.perspective-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                // Update content
+                document.querySelectorAll('.perspective-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(`perspective-${perspective}`).classList.add('active');
+            });
+        });
+
+        // Monument cards
+        const monumentGrid = document.querySelector('.monument-grid');
+        document.querySelectorAll('.monument-card .monument-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const card = header.closest('.monument-card');
+                const isOpen = card.classList.contains('open');
+
+                // Close all monument cards
+                document.querySelectorAll('.monument-card').forEach(c => c.classList.remove('open'));
+
+                // Toggle clicked card and update grid state
+                if (!isOpen) {
+                    card.classList.add('open');
+                    monumentGrid.classList.add('has-open');
+                    // Smooth scroll to card
+                    setTimeout(() => {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
+                } else {
+                    monumentGrid.classList.remove('has-open');
+                }
+            });
+        });
+
+        // Era cards (modern history)
+        const modernTimeline = document.querySelector('.modern-timeline');
+        document.querySelectorAll('.era-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const isOpen = card.classList.contains('open');
+
+                // Close all era cards
+                document.querySelectorAll('.era-card').forEach(c => c.classList.remove('open'));
+
+                // Toggle clicked card and update grid state
+                if (!isOpen) {
+                    card.classList.add('open');
+                    modernTimeline.classList.add('has-open');
+                    // Smooth scroll to card
+                    setTimeout(() => {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
+                } else {
+                    modernTimeline.classList.remove('has-open');
+                }
+            });
+        });
 
         // Greek Phrases Carousel
         const greekPhrases = [
