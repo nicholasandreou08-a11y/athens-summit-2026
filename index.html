@@ -278,6 +278,11 @@
             opacity: 0.7;
         }
 
+        @keyframes pulsate {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
             40% { transform: translateX(-50%) translateY(-10px); }
@@ -2017,6 +2022,164 @@
             }
         }
 
+        /* Dynamic Notices Bar */
+        .notices-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 2rem;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .notices-bar.visible {
+            transform: translateY(0);
+        }
+
+        .notices-bar.dismissed {
+            transform: translateY(100%);
+        }
+
+        .notices-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .notices-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .notices-indicator.live {
+            background: #22c55e;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        .notices-indicator.upcoming {
+            background: #f59e0b;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        .notices-indicator.info {
+            background: var(--primary-light);
+            animation: pulse-dot 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 0 0 currentColor; opacity: 1; }
+            50% { box-shadow: 0 0 0 6px transparent; opacity: 0.7; }
+        }
+
+        .notices-indicator.live {
+            color: rgba(34, 197, 94, 0.4);
+        }
+
+        .notices-indicator.upcoming {
+            color: rgba(245, 158, 11, 0.4);
+        }
+
+        .notices-indicator.info {
+            color: rgba(94, 234, 212, 0.4);
+        }
+
+        .notices-label {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .notices-label.live {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+        }
+
+        .notices-label.upcoming {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+        }
+
+        .notices-label.info {
+            background: rgba(94, 234, 212, 0.15);
+            color: var(--primary-light);
+        }
+
+        .notices-text {
+            flex: 1;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9375rem;
+            font-weight: 400;
+            overflow: hidden;
+        }
+
+        .notices-text-inner {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .notices-text-inner.fade-out {
+            opacity: 0;
+            transform: translateY(5px);
+        }
+
+        .notices-time {
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        .notices-dismiss {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .notices-dismiss:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .notices-dismiss svg {
+            width: 14px;
+            height: 14px;
+            stroke: rgba(255, 255, 255, 0.6);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        @media (max-width: 600px) {
+            .notices-bar {
+                padding: 0.625rem 1rem;
+            }
+
+            .notices-label {
+                display: none;
+            }
+
+            .notices-text {
+                font-size: 0.8125rem;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             .overview-grid {
@@ -2108,6 +2271,20 @@
 
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
+
+    <!-- Dynamic Notices Bar -->
+    <div class="notices-bar" id="noticesBar">
+        <div class="notices-inner">
+            <div class="notices-indicator" id="noticesIndicator"></div>
+            <div class="notices-label" id="noticesLabel"></div>
+            <div class="notices-text">
+                <div class="notices-text-inner" id="noticesText"></div>
+            </div>
+            <button class="notices-dismiss" id="noticesDismiss" aria-label="Dismiss">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+    </div>
 
     <!-- Progress Bar -->
     <div class="progress-bar" id="progressBar"></div>
@@ -4004,6 +4181,17 @@
         </div>
     </section>
 
+    <!-- Special Thanks -->
+    <section style="background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%); text-align: center; padding: 4rem 2rem;">
+        <div class="container" style="max-width: 700px;">
+            <svg viewBox="0 0 24 24" style="width: 40px; height: 40px; stroke: var(--gold); fill: none; stroke-width: 1.5; margin-bottom: 1.5rem; animation: pulsate 1.5s ease-in-out infinite;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <h2 style="color: var(--white); font-size: 1.75rem; margin-bottom: 1rem;">Special Thanks</h2>
+            <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.0625rem; line-height: 1.8; margin-bottom: 1.5rem;">To our incredible logistics team — <strong style="color: var(--gold);">Maria Vostani</strong>, <strong style="color: var(--gold);">Kyriacos Mappourides</strong>, and <strong style="color: var(--gold);">Panagiotis Nikolaou</strong> — for making this all possible.</p>
+            <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.0625rem; line-height: 1.8; margin-bottom: 1.5rem;">To all the <strong style="color: var(--gold);">facilitators</strong> who are generously giving their time and expertise to lead our sessions.</p>
+            <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.0625rem; line-height: 1.8;">And to all the <strong style="color: var(--gold);">plus ones</strong> who will undoubtedly offer moral support to all of us.</p>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -4386,6 +4574,139 @@
     </script>
 
     </div><!-- End main-content -->
+
+    <script>
+        // Dynamic Notices Bar
+        (function() {
+            const schedule = [
+                // Pre-event
+                { start: '2026-01-01T00:00', end: '2026-02-02T00:00', text: 'Athens Edition 2026 is coming!', type: 'info' },
+
+                // Arrival Day - Feb 2
+                { start: '2026-02-02T00:00', end: '2026-02-02T23:59', text: 'Arrival Day — Welcome to Athens! Settle in and explore the city.', type: 'live' },
+
+                // Day 1 - Feb 3
+                { start: '2026-02-03T09:00', end: '2026-02-03T09:30', text: 'Welcome to the Summit', time: '09:00 – 09:30', type: 'live' },
+                { start: '2026-02-03T09:30', end: '2026-02-03T10:30', text: "Locum's Nest in Numbers", time: '09:30 – 10:30', type: 'live' },
+                { start: '2026-02-03T10:30', end: '2026-02-03T10:45', text: 'Break — Grab a coffee!', time: '10:30 – 10:45', type: 'info' },
+                { start: '2026-02-03T10:45', end: '2026-02-03T11:30', text: 'Product Direction and Growth Opportunities in 2026', time: '10:45 – 11:30', type: 'live' },
+                { start: '2026-02-03T11:30', end: '2026-02-03T13:30', text: 'Breakout Sessions: In-Depth Knowledge Transfer', time: '11:30 – 13:30', type: 'live' },
+                { start: '2026-02-03T13:30', end: '2026-02-03T14:30', text: 'Lunch', time: '13:30 – 14:30', type: 'info' },
+                { start: '2026-02-03T14:30', end: '2026-02-03T16:30', text: 'Afternoon Breakout Sessions', time: '14:30 – 16:30', type: 'live' },
+                { start: '2026-02-03T16:30', end: '2026-02-03T17:30', text: 'Whole Company Debrief', time: '16:30 – 17:30', type: 'live' },
+                { start: '2026-02-03T17:30', end: '2026-02-03T19:00', text: 'Free time — Freshen up before dinner', type: 'info' },
+                { start: '2026-02-03T19:00', end: '2026-02-03T23:59', text: 'Dinner & Drinks', time: 'From 19:00', type: 'live' },
+
+                // Day 2 - Feb 4
+                { start: '2026-02-04T00:00', end: '2026-02-04T09:00', text: 'Day 2 starts at 09:00 — Good morning Athens!', type: 'upcoming' },
+                { start: '2026-02-04T09:00', end: '2026-02-04T09:30', text: 'Welcome to Day 2', time: '09:00 – 09:30', type: 'live' },
+                { start: '2026-02-04T09:30', end: '2026-02-04T10:30', text: 'Product Discovery: Rates and Demand Control', time: '09:30 – 10:30', type: 'live' },
+                { start: '2026-02-04T10:30', end: '2026-02-04T13:00', text: 'Morning Breakout Sessions', time: '10:30 – 13:00', type: 'live' },
+                { start: '2026-02-04T13:00', end: '2026-02-04T14:00', text: 'Lunch', time: '13:00 – 14:00', type: 'info' },
+                { start: '2026-02-04T14:00', end: '2026-02-04T17:00', text: 'Afternoon Sessions', time: '14:00 – 17:00', type: 'live' },
+                { start: '2026-02-04T17:00', end: '2026-02-04T17:30', text: 'Whole Company Debrief', time: '17:00 – 17:30', type: 'live' },
+                { start: '2026-02-04T17:30', end: '2026-02-04T23:59', text: 'Dinner & Drinks — Enjoy the evening!', type: 'live' },
+
+                // Day 3 - Feb 5
+                { start: '2026-02-05T00:00', end: '2026-02-05T10:00', text: 'Free morning — Optional Walking Tour at 10:00', type: 'upcoming' },
+                { start: '2026-02-05T10:00', end: '2026-02-05T13:00', text: 'Optional Walking Tour of Athens', time: 'From 10:00', type: 'live' },
+                { start: '2026-02-05T13:00', end: '2026-02-05T14:00', text: 'Free afternoon — Explore, museums, or relax', type: 'info' },
+                { start: '2026-02-05T14:00', end: '2026-02-05T16:00', text: 'Exec Team Meeting', time: '14:00 – 16:00', type: 'live' },
+                { start: '2026-02-05T16:00', end: '2026-02-05T23:59', text: 'Free evening — Enjoy your last night in Athens!', type: 'info' },
+
+                // Day 4 - Feb 6
+                { start: '2026-02-06T00:00', end: '2026-02-06T10:00', text: 'Free day — Explore Athens at your leisure', type: 'info' },
+                { start: '2026-02-06T10:00', end: '2026-02-06T12:00', text: 'Exec Team Meeting', time: '10:00 – 12:00', type: 'live' },
+                { start: '2026-02-06T12:00', end: '2026-02-06T23:59', text: 'Free day — Departures begin. Safe travels!', type: 'info' },
+
+                // Post-event departures
+                { start: '2026-02-07T00:00', end: '2026-02-10T23:59', text: 'Departures continue — Safe travels home!', type: 'info' },
+
+                // Post-event
+                { start: '2026-02-11T00:00', end: '2026-12-31T23:59', text: 'Thanks for an amazing Athens Edition 2026!', type: 'info' }
+            ];
+
+            const bar = document.getElementById('noticesBar');
+            const indicator = document.getElementById('noticesIndicator');
+            const label = document.getElementById('noticesLabel');
+            const textEl = document.getElementById('noticesText');
+            const dismissBtn = document.getElementById('noticesDismiss');
+            let dismissed = false;
+            let lastText = '';
+
+            function getStatus() {
+                const now = new Date();
+                // Find current event
+                for (const event of schedule) {
+                    const start = new Date(event.start);
+                    const end = new Date(event.end);
+                    if (now >= start && now <= end) {
+                        return event;
+                    }
+                }
+                // Find next upcoming event
+                let nextEvent = null;
+                for (const event of schedule) {
+                    const start = new Date(event.start);
+                    if (start > now) {
+                        nextEvent = event;
+                        break;
+                    }
+                }
+                if (nextEvent) {
+                    return { text: nextEvent.text, type: 'upcoming', time: nextEvent.time };
+                }
+                return { text: 'Athens Edition 2026', type: 'info' };
+            }
+
+            function updateBar() {
+                if (dismissed) return;
+
+                const status = getStatus();
+                const labelMap = { live: 'Now', upcoming: 'Next', info: 'Notice' };
+                const newText = status.time
+                    ? `${status.text} <span class="notices-time">${status.time}</span>`
+                    : status.text;
+
+                if (newText !== lastText) {
+                    // Fade out, update, fade in
+                    textEl.classList.add('fade-out');
+                    setTimeout(() => {
+                        textEl.innerHTML = newText;
+                        indicator.className = 'notices-indicator ' + status.type;
+                        label.className = 'notices-label ' + status.type;
+                        label.textContent = labelMap[status.type] || 'Notice';
+                        textEl.classList.remove('fade-out');
+                        lastText = newText;
+                    }, 300);
+                }
+
+                // Show bar
+                if (!bar.classList.contains('visible')) {
+                    setTimeout(() => bar.classList.add('visible'), 1000);
+                }
+            }
+
+            dismissBtn.addEventListener('click', () => {
+                dismissed = true;
+                bar.classList.add('dismissed');
+            });
+
+            // Click bar to scroll to schedule
+            bar.addEventListener('click', (e) => {
+                if (e.target.closest('.notices-dismiss')) return;
+                const scheduleSection = document.getElementById('schedule');
+                if (scheduleSection) {
+                    scheduleSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+            bar.style.cursor = 'pointer';
+
+            // Initial update + refresh every 30 seconds
+            updateBar();
+            setInterval(updateBar, 30000);
+        })();
+    </script>
 
     <script>
         // Password Protection
