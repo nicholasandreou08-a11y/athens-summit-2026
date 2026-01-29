@@ -2022,6 +2022,124 @@
             }
         }
 
+        /* Special Thanks Section */
+        .special-thanks {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--accent) 100%);
+            text-align: center;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thanks-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 40%);
+        }
+
+        .thanks-heart {
+            margin-bottom: 1.5rem;
+        }
+
+        .thanks-heart svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--gold);
+            fill: rgba(212, 175, 55, 0.2);
+            stroke-width: 1.5;
+            animation: pulsate 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.4));
+        }
+
+        .thanks-title {
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            font-weight: 700;
+        }
+
+        .thanks-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .thanks-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+
+        .thanks-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+        }
+
+        .thanks-card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+        }
+
+        .thanks-card-icon svg {
+            width: 26px;
+            height: 26px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .thanks-card h3 {
+            color: var(--white);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .thanks-card p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        .thanks-names {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+        }
+
+        .thanks-names span {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.9375rem;
+        }
+
+        @media (max-width: 768px) {
+            .thanks-cards {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
         /* Dynamic Notices Bar */
         .notices-bar {
             position: fixed;
@@ -4182,13 +4300,41 @@
     </section>
 
     <!-- Special Thanks -->
-    <section style="background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%); text-align: center; padding: 4rem 2rem;">
-        <div class="container" style="max-width: 700px;">
-            <svg viewBox="0 0 24 24" style="width: 40px; height: 40px; stroke: var(--gold); fill: none; stroke-width: 1.5; margin-bottom: 1.5rem; animation: pulsate 1.5s ease-in-out infinite;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            <h2 style="color: var(--white); font-size: 1.75rem; margin-bottom: 1rem;">Special Thanks</h2>
-            <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.0625rem; line-height: 1.8; margin-bottom: 1.5rem;">To our incredible logistics team — <strong style="color: var(--gold);">Maria Vostani</strong>, <strong style="color: var(--gold);">Kyriacos Mappourides</strong>, and <strong style="color: var(--gold);">Panagiotis Nikolaou</strong> — for making this all possible.</p>
-            <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.0625rem; line-height: 1.8; margin-bottom: 1.5rem;">To all the <strong style="color: var(--gold);">facilitators</strong> who are generously giving their time and expertise to lead our sessions.</p>
-            <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.0625rem; line-height: 1.8;">And to all the <strong style="color: var(--gold);">plus ones</strong> who will undoubtedly offer moral support to all of us.</p>
+    <section class="special-thanks">
+        <div class="thanks-bg-pattern"></div>
+        <div class="container" style="max-width: 800px; position: relative; z-index: 1;">
+            <div class="thanks-heart">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h2 class="thanks-title">Special Thanks</h2>
+            <div class="thanks-cards">
+                <div class="thanks-card">
+                    <div class="thanks-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9l2 2 4-4"/></svg>
+                    </div>
+                    <h3>Logistics Team</h3>
+                    <p>For making this all possible</p>
+                    <div class="thanks-names">
+                        <span>Maria Vostani</span>
+                        <span>Kyriacos Mappourides</span>
+                        <span>Panagiotis Nikolaou</span>
+                    </div>
+                </div>
+                <div class="thanks-card">
+                    <div class="thanks-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Facilitators</h3>
+                    <p>Generously giving their time and expertise to lead our sessions</p>
+                </div>
+                <div class="thanks-card">
+                    <div class="thanks-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <h3>Plus Ones</h3>
+                    <p>Who will undoubtedly offer moral support to all of us</p>
+                </div>
+            </div>
         </div>
     </section>
 
