@@ -37,8 +37,9 @@ SCHEDULE = [
     {"start": "2026-02-03T13:30", "end": "2026-02-03T14:30", "text": "Lunch", "time": "13:30 – 14:30", "type": "info"},
     {"start": "2026-02-03T14:30", "end": "2026-02-03T16:30", "text": "Afternoon Breakouts — Track A: Ideation to Iteration | Track B: The Asset Challenge", "time": "14:30 – 16:30", "type": "live"},
     {"start": "2026-02-03T16:30", "end": "2026-02-03T17:30", "text": "Whole Company Debrief", "time": "16:30 – 17:30", "type": "live"},
-    {"start": "2026-02-03T17:30", "end": "2026-02-03T19:00", "text": "Free time — Freshen up before dinner", "type": "info"},
-    {"start": "2026-02-03T19:00", "end": "2026-02-03T23:59", "text": "Dinner at Onos Taverna — Sharing plates & Greek flavours", "time": "From 19:00", "type": "live"},
+    {"start": "2026-02-03T17:30", "end": "2026-02-03T20:00", "text": "Optional Acropolis Sunset Drinks or Coffee — Meet at hotel reception", "time": "17:30", "type": "info"},
+    {"start": "2026-02-03T20:00", "end": "2026-02-03T22:00", "text": "Dinner at Onos Taverna — Sharing plates & Greek flavours", "time": "From 20:00", "type": "live"},
+    {"start": "2026-02-03T22:00", "end": "2026-02-03T23:59", "text": "Optional After Dinner Drinks — 360, A for Athens, City Zen or Ciel", "time": "From 22:00", "type": "info"},
 
     # Day 2 - Feb 4
     {"start": "2026-02-04T00:00", "end": "2026-02-04T09:00", "text": "Day 2 starts at 09:00 — Good morning Athens!", "type": "upcoming"},
