@@ -2,7 +2,7 @@ name: Slack Summit Notifications
 
 on:
   schedule:
-    - cron: '*/10 * 1-11 2 *' # Every 10 min, Feb 1–11
+    - cron: '*/5 * 1-11 2 *' # Every 5 min, Feb 1–11
   workflow_dispatch: # Manual trigger for testing
 
 jobs:
