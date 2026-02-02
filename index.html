@@ -314,9 +314,10 @@
 
         .confetti {
             position: absolute;
-            width: 10px;
-            height: 10px;
+            font-size: 24px;
+            line-height: 1;
             opacity: 0;
+            user-select: none;
         }
 
         .confetti.active {
@@ -5226,48 +5227,45 @@
             document.getElementById('progressBar').style.width = scrolled + '%';
         });
 
-        // Confetti animation
-        let confettiTriggered = false;
-        function createConfetti() {
-            if (confettiTriggered) return;
-            confettiTriggered = true;
+        // Emoji celebration animation
+        const celebrationDays = {
+            '2026-02-02': ['🇬🇷', '✈️', '☀️', '🏛️'],
+            '2026-02-03': ['🦉', '💡', '📚', '🧠'],
+            '2026-02-04': ['🧭', '🚀', '🗺️', '🔭'],
+            '2026-02-05': ['🏛️', '🫒', '☀️', '🌊'],
+            '2026-02-06': ['🏛️', '🫒', '☀️', '🌊'],
+        };
 
+        function getTodayKey() {
+            const d = new Date();
+            return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+        }
+
+        function createConfetti(emojis) {
             const container = document.getElementById('confettiContainer');
-            const colors = ['#0d9488', '#d4af37', '#5eead4', '#14b8a6', '#f4e4a6', '#ffffff'];
-
             for (let i = 0; i < 150; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
+                confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
                 confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.fontSize = (Math.random() * 16 + 18) + 'px';
                 confetti.style.animationDelay = Math.random() * 2 + 's';
                 confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
-
-                // Random shapes
-                if (Math.random() > 0.5) {
-                    confetti.style.borderRadius = '50%';
-                } else {
-                    confetti.style.width = '8px';
-                    confetti.style.height = '16px';
-                }
-
                 container.appendChild(confetti);
-
                 setTimeout(() => confetti.classList.add('active'), 10);
-
-                // Remove after animation
                 setTimeout(() => confetti.remove(), 5000);
             }
         }
 
-        // Check countdown for confetti trigger
         function checkConfetti() {
-            const eventDate = new Date('February 2, 2026 00:00:00').getTime();
-            const now = new Date().getTime();
-            if (now >= eventDate && !confettiTriggered) {
-                createConfetti();
-            }
+            const today = getTodayKey();
+            const emojis = celebrationDays[today];
+            if (!emojis) return;
+            if (sessionStorage.getItem('confetti-shown-' + today)) return;
+            sessionStorage.setItem('confetti-shown-' + today, '1');
+            createConfetti(emojis);
         }
+        checkConfetti();
         setInterval(checkConfetti, 1000);
 
         // Animated number counting for countdown
