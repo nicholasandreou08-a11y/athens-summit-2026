@@ -411,6 +411,34 @@
             letter-spacing: 0.5px;
         }
 
+        .countdown-live {
+            text-align: center;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .countdown-day {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        .countdown-theme {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 0.25rem;
+        }
+
+        .countdown-session {
+            font-size: 0.8125rem;
+            color: var(--primary-light);
+            margin-top: 0.625rem;
+            transition: opacity 0.5s ease;
+        }
+
         /* Sections */
         section {
             padding: 5rem 2rem;
@@ -2363,6 +2391,13 @@
             font-weight: 600;
         }
 
+        .notices-allocation {
+            display: inline;
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-left: 0.5rem;
+        }
+
         .notices-dismiss {
             width: 28px;
             height: 28px;
@@ -2400,6 +2435,10 @@
 
             .notices-text {
                 font-size: 0.8125rem;
+            }
+
+            .notices-allocation {
+                display: none;
             }
         }
 
@@ -2455,6 +2494,18 @@
 
             .countdown-value {
                 font-size: 1.5rem;
+            }
+
+            .countdown-day {
+                font-size: 1.5rem;
+            }
+
+            .countdown-theme {
+                font-size: 0.8125rem;
+            }
+
+            .countdown-session {
+                font-size: 0.75rem;
             }
 
             .schedule-tabs {
@@ -4922,31 +4973,180 @@
     </footer>
 
     <script>
+        // Shared schedule data — used by both countdown timer and notification bar
+        var summitSchedule = [
+            // Pre-event
+            { start: '2026-01-01T00:00', end: '2026-02-02T00:00', text: 'Athens Edition 2026 is coming!', type: 'info' },
+
+            // Arrival Day - Feb 2 (time-windowed welcome messages)
+            { start: '2026-02-02T00:00', end: '2026-02-02T07:30', text: 'Arrival Day — 6 already in Athens, 23 more joining today!', type: 'info' },
+            { start: '2026-02-02T07:30', end: '2026-02-02T12:00', text: 'Welcome to Athens, Jennifer! ☀️ — 22 more arriving today', type: 'live' },
+            { start: '2026-02-02T12:00', end: '2026-02-02T13:00', text: 'Welcome Emilios, Andreas, Nikos, Rami, Pavlos & Vasilis! — 16 more to come', type: 'live' },
+            { start: '2026-02-02T13:00', end: '2026-02-02T13:50', text: 'Welcome Emma! — 15 more arriving today', type: 'live' },
+            { start: '2026-02-02T13:50', end: '2026-02-02T14:30', text: 'Welcome Deborah & Claire! — 13 more to come', type: 'live' },
+            { start: '2026-02-02T14:30', end: '2026-02-02T17:15', text: 'Welcome Panagiotis! — Next group landing at 17:30', type: 'live' },
+            { start: '2026-02-02T17:15', end: '2026-02-02T17:30', text: 'Welcome Aris, Evripides, Panagiotis & Anna! — 8 more to come', type: 'live' },
+            { start: '2026-02-02T17:30', end: '2026-02-02T18:00', text: 'Welcome Walk through Athens — Meet at hotel reception', time: '17:30', type: 'live' },
+            { start: '2026-02-02T18:00', end: '2026-02-02T19:00', text: 'Welcome Drinks at Couleur Local Bar — Rooftop views of the Acropolis', time: 'From 18:00', type: 'live' },
+            { start: '2026-02-02T19:00', end: '2026-02-02T20:00', text: 'Welcome Jonathan, Ben, Ellie, Sue, Joe, Naomi & Lara! 🎉', type: 'live' },
+            { start: '2026-02-02T20:00', end: '2026-02-02T20:30', text: 'Welcome Demis! Everyone\'s here — see you at dinner 🇬🇷', type: 'live' },
+            { start: '2026-02-02T20:30', end: '2026-02-02T23:59', text: 'Dinner at Kalamaki Bar — Traditional Greek taverna', time: 'From 20:30', type: 'live' },
+
+            // Day 1 - Feb 3
+            { start: '2026-02-03T09:00', end: '2026-02-03T09:30', text: 'Welcome to the Summit', time: '09:00 – 09:30', type: 'live' },
+            { start: '2026-02-03T09:30', end: '2026-02-03T10:30', text: "Locum's Nest in Numbers", time: '09:30 – 10:30', type: 'live' },
+            { start: '2026-02-03T10:30', end: '2026-02-03T10:45', text: 'Break — Grab a coffee!', time: '10:30 – 10:45', type: 'info' },
+            { start: '2026-02-03T10:45', end: '2026-02-03T11:30', text: 'Product Direction and Growth Opportunities in 2026', time: '10:45 – 11:30', type: 'live' },
+            { start: '2026-02-03T11:30', end: '2026-02-03T13:30', text: 'Breakout Sessions — Track A: Platform Walkthrough | Track B: 2025 Releases | Track C: Data & Reporting <span class="notices-allocation">click to see your allocation</span>', time: '11:30 – 13:30', type: 'live' },
+            { start: '2026-02-03T13:30', end: '2026-02-03T14:30', text: 'Lunch', time: '13:30 – 14:30', type: 'info' },
+            { start: '2026-02-03T14:30', end: '2026-02-03T16:30', text: 'Afternoon Breakouts — Track A: Ideation to Iteration | Track B: The Asset Challenge <span class="notices-allocation">click to see your allocation</span>', time: '14:30 – 16:30', type: 'live' },
+            { start: '2026-02-03T16:30', end: '2026-02-03T17:30', text: 'Whole Company Debrief', time: '16:30 – 17:30', type: 'live' },
+            { start: '2026-02-03T17:30', end: '2026-02-03T19:00', text: 'Free time — Freshen up before dinner', type: 'info' },
+            { start: '2026-02-03T19:00', end: '2026-02-03T23:59', text: 'Dinner at Onos Taverna — Sharing plates & Greek flavours', time: 'From 19:00', type: 'live' },
+
+            // Day 2 - Feb 4
+            { start: '2026-02-04T00:00', end: '2026-02-04T09:00', text: 'Day 2 starts at 09:00 — Good morning Athens!', type: 'upcoming' },
+            { start: '2026-02-04T09:00', end: '2026-02-04T09:30', text: 'Welcome to Day 2', time: '09:00 – 09:30', type: 'live' },
+            { start: '2026-02-04T09:30', end: '2026-02-04T10:30', text: 'Product Discovery: Rates and Demand Control', time: '09:30 – 10:30', type: 'live' },
+            { start: '2026-02-04T10:30', end: '2026-02-04T13:00', text: 'Morning Breakouts — Track A: Rates & Demand Control | Track B: National Staff Bank Strategy <span class="notices-allocation">click to see your allocation</span>', time: '10:30 – 13:00', type: 'live' },
+            { start: '2026-02-04T13:00', end: '2026-02-04T14:00', text: 'Lunch', time: '13:00 – 14:00', type: 'info' },
+            { start: '2026-02-04T14:00', end: '2026-02-04T17:00', text: 'Afternoon Sessions — Track A: Timesheet Self Service | Track B: National Staff Bank Strategy Pt 2 <span class="notices-allocation">click to see your allocation</span>', time: '14:00 – 17:00', type: 'live' },
+            { start: '2026-02-04T17:00', end: '2026-02-04T17:30', text: 'Whole Company Debrief', time: '17:00 – 17:30', type: 'live' },
+            { start: '2026-02-04T17:30', end: '2026-02-04T18:00', text: 'Free time — Freshen up before drinks', type: 'info' },
+            { start: '2026-02-04T18:00', end: '2026-02-04T20:30', text: 'Pre-Dinner Drinks at Dóor — Creative cocktails in a refined setting', time: 'From 18:00', type: 'live' },
+            { start: '2026-02-04T20:30', end: '2026-02-04T23:59', text: 'Dinner at To Paradosiako — Authentic neighbourhood taverna', time: 'From 20:30', type: 'live' },
+
+            // Day 3 - Feb 5
+            { start: '2026-02-05T00:00', end: '2026-02-05T10:00', text: 'Free morning — Optional Walking Tour at 10:00', type: 'upcoming' },
+            { start: '2026-02-05T10:00', end: '2026-02-05T13:00', text: 'Optional Walking Tour of Athens', time: 'From 10:00', type: 'live' },
+            { start: '2026-02-05T13:00', end: '2026-02-05T14:00', text: 'Free afternoon — Explore, museums, or relax', type: 'info' },
+            { start: '2026-02-05T14:00', end: '2026-02-05T16:00', text: 'Exec Team Meeting', time: '14:00 – 16:00', type: 'live' },
+            { start: '2026-02-05T16:00', end: '2026-02-05T23:59', text: 'Free evening — Use your dinner allowance at a restaurant of your choice!', type: 'info' },
+
+            // Day 4 - Feb 6
+            { start: '2026-02-06T00:00', end: '2026-02-06T10:00', text: 'Free day — Explore Athens at your leisure', type: 'info' },
+            { start: '2026-02-06T10:00', end: '2026-02-06T12:00', text: 'Exec Team Meeting', time: '10:00 – 12:00', type: 'live' },
+            { start: '2026-02-06T12:00', end: '2026-02-06T19:00', text: 'Free afternoon — Departures begin. Safe travels!', type: 'info' },
+            { start: '2026-02-06T19:00', end: '2026-02-06T23:59', text: 'Free evening — Use your dinner allowance at a restaurant of your choice!', type: 'info' },
+
+            // Post-event departures
+            { start: '2026-02-07T00:00', end: '2026-02-10T23:59', text: 'Departures continue — Safe travels home!', type: 'info' },
+
+            // Post-event
+            { start: '2026-02-11T00:00', end: '2026-12-31T23:59', text: 'Thanks for an amazing Athens Edition 2026!', type: 'info' }
+        ];
+    </script>
+
+    <script>
         // Countdown Timer
+        var countdownLiveMode = false;
+
+        function getDayInfo(now) {
+            var d = new Date(now);
+            var month = d.getMonth(); // 0-indexed: Jan=0, Feb=1
+            var day = d.getDate();
+            if (month === 1 && day === 2) return { label: 'Arrival Day', theme: 'Welcome to Athens' };
+            if (month === 1 && day === 3) return { label: 'Day 1', theme: 'Knowledge & Collaboration' };
+            if (month === 1 && day === 4) return { label: 'Day 2', theme: 'Discovery & Strategy' };
+            if (month === 1 && (day === 5 || day === 6)) return { label: 'Days 3–4', theme: 'Exploration & Free Time' };
+            if (month === 1 && day >= 7) return { label: 'Athens 2026', theme: 'Thanks for an amazing summit!' };
+            // After Feb
+            if (month > 1) return { label: 'Athens 2026', theme: 'Thanks for an amazing summit!' };
+            return { label: 'Athens 2026', theme: '' };
+        }
+
+        function getCurrentSession(now) {
+            if (!summitSchedule) return null;
+            var nowDate = new Date(now);
+            var current = null;
+            var next = null;
+            for (var i = 0; i < summitSchedule.length; i++) {
+                var ev = summitSchedule[i];
+                var start = new Date(ev.start);
+                var end = new Date(ev.end);
+                if (nowDate >= start && nowDate <= end) {
+                    current = ev;
+                }
+                if (!next && start > nowDate) {
+                    next = ev;
+                    break;
+                }
+            }
+            if (current) {
+                // Strip HTML tags for countdown display
+                var cleanText = current.text.replace(/<[^>]*>/g, '');
+                return { prefix: 'Now', text: cleanText, time: current.time || '' };
+            }
+            if (next) {
+                var cleanText = next.text.replace(/<[^>]*>/g, '');
+                var nextTime = next.time || next.start.split('T')[1].substring(0, 5);
+                return { prefix: 'Next', text: cleanText, time: nextTime };
+            }
+            return null;
+        }
+
         function updateCountdown() {
-            const eventDate = new Date('February 2, 2026 00:00:00').getTime();
-            const now = new Date().getTime();
-            const distance = eventDate - now;
+            var eventDate = new Date('February 2, 2026 00:00:00').getTime();
+            var now = new Date().getTime();
+            var distance = eventDate - now;
 
             if (distance > 0) {
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                // If we were in live mode, restore the countdown boxes
+                if (countdownLiveMode) {
+                    var container = document.getElementById('countdown');
+                    container.innerHTML = '<div class="countdown-item"><div class="countdown-value" id="days">--</div><div class="countdown-label">Days</div></div>'
+                        + '<div class="countdown-item"><div class="countdown-value" id="hours">--</div><div class="countdown-label">Hours</div></div>'
+                        + '<div class="countdown-item"><div class="countdown-value" id="minutes">--</div><div class="countdown-label">Minutes</div></div>'
+                        + '<div class="countdown-item"><div class="countdown-value" id="seconds">--</div><div class="countdown-label">Seconds</div></div>';
+                    countdownLiveMode = false;
+                }
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                 document.getElementById('days').textContent = days;
                 document.getElementById('hours').textContent = hours;
                 document.getElementById('minutes').textContent = minutes;
                 document.getElementById('seconds').textContent = seconds;
             } else {
-                document.getElementById('days').textContent = '0';
-                document.getElementById('hours').textContent = '0';
-                document.getElementById('minutes').textContent = '0';
-                document.getElementById('seconds').textContent = '0';
+                countdownLiveMode = true;
+                var container = document.getElementById('countdown');
+                var info = getDayInfo(now);
+                var session = getCurrentSession(now);
+
+                var html = '<div class="countdown-live">';
+                html += '<div class="countdown-day">' + info.label + '</div>';
+                if (info.theme) {
+                    html += '<div class="countdown-theme">' + info.theme + '</div>';
+                }
+                if (session) {
+                    var sessionLine = session.prefix + ': ' + session.text;
+                    if (session.time) sessionLine += ' · ' + session.time;
+                    html += '<div class="countdown-session">' + sessionLine + '</div>';
+                }
+                html += '</div>';
+                container.innerHTML = html;
             }
         }
 
-        setInterval(updateCountdown, 1000);
+        setInterval(function() {
+            var eventDate = new Date('February 2, 2026 00:00:00').getTime();
+            var now = new Date().getTime();
+            if (now >= eventDate) {
+                // In live mode, update every 30 seconds
+                updateCountdown();
+            } else {
+                // Pre-event, update every second
+                updateCountdown();
+            }
+        }, 1000);
+
+        // Also run a slower interval for live mode session updates
+        setInterval(function() {
+            if (countdownLiveMode) updateCountdown();
+        }, 30000);
+
         updateCountdown();
 
         // Navigation show/hide on scroll
@@ -5272,59 +5472,7 @@
     <script>
         // Dynamic Notices Bar
         (function() {
-            const schedule = [
-                // Pre-event
-                { start: '2026-01-01T00:00', end: '2026-02-02T00:00', text: 'Athens Edition 2026 is coming!', type: 'info' },
-
-                // Arrival Day - Feb 2
-                { start: '2026-02-02T00:00', end: '2026-02-02T17:30', text: 'Arrival Day — Welcome to Athens! Settle in and explore the city.', type: 'live' },
-                { start: '2026-02-02T17:30', end: '2026-02-02T18:00', text: 'Welcome Walk through Athens — Meet at hotel reception', time: '17:30', type: 'live' },
-                { start: '2026-02-02T18:00', end: '2026-02-02T20:30', text: 'Welcome Drinks at Couleur Local Bar — Rooftop views of the Acropolis', time: 'From 18:00', type: 'live' },
-                { start: '2026-02-02T20:30', end: '2026-02-02T23:59', text: 'Dinner at Kalamaki Bar — Traditional Greek taverna', time: 'From 20:30', type: 'live' },
-
-                // Day 1 - Feb 3
-                { start: '2026-02-03T09:00', end: '2026-02-03T09:30', text: 'Welcome to the Summit', time: '09:00 – 09:30', type: 'live' },
-                { start: '2026-02-03T09:30', end: '2026-02-03T10:30', text: "Locum's Nest in Numbers", time: '09:30 – 10:30', type: 'live' },
-                { start: '2026-02-03T10:30', end: '2026-02-03T10:45', text: 'Break — Grab a coffee!', time: '10:30 – 10:45', type: 'info' },
-                { start: '2026-02-03T10:45', end: '2026-02-03T11:30', text: 'Product Direction and Growth Opportunities in 2026', time: '10:45 – 11:30', type: 'live' },
-                { start: '2026-02-03T11:30', end: '2026-02-03T13:30', text: 'Breakout Sessions: In-Depth Knowledge Transfer', time: '11:30 – 13:30', type: 'live' },
-                { start: '2026-02-03T13:30', end: '2026-02-03T14:30', text: 'Lunch', time: '13:30 – 14:30', type: 'info' },
-                { start: '2026-02-03T14:30', end: '2026-02-03T16:30', text: 'Afternoon Breakout Sessions', time: '14:30 – 16:30', type: 'live' },
-                { start: '2026-02-03T16:30', end: '2026-02-03T17:30', text: 'Whole Company Debrief', time: '16:30 – 17:30', type: 'live' },
-                { start: '2026-02-03T17:30', end: '2026-02-03T19:00', text: 'Free time — Freshen up before dinner', type: 'info' },
-                { start: '2026-02-03T19:00', end: '2026-02-03T23:59', text: 'Dinner at Onos Taverna — Sharing plates & Greek flavours', time: 'From 19:00', type: 'live' },
-
-                // Day 2 - Feb 4
-                { start: '2026-02-04T00:00', end: '2026-02-04T09:00', text: 'Day 2 starts at 09:00 — Good morning Athens!', type: 'upcoming' },
-                { start: '2026-02-04T09:00', end: '2026-02-04T09:30', text: 'Welcome to Day 2', time: '09:00 – 09:30', type: 'live' },
-                { start: '2026-02-04T09:30', end: '2026-02-04T10:30', text: 'Product Discovery: Rates and Demand Control', time: '09:30 – 10:30', type: 'live' },
-                { start: '2026-02-04T10:30', end: '2026-02-04T13:00', text: 'Morning Breakout Sessions', time: '10:30 – 13:00', type: 'live' },
-                { start: '2026-02-04T13:00', end: '2026-02-04T14:00', text: 'Lunch', time: '13:00 – 14:00', type: 'info' },
-                { start: '2026-02-04T14:00', end: '2026-02-04T17:00', text: 'Afternoon Sessions', time: '14:00 – 17:00', type: 'live' },
-                { start: '2026-02-04T17:00', end: '2026-02-04T17:30', text: 'Whole Company Debrief', time: '17:00 – 17:30', type: 'live' },
-                { start: '2026-02-04T17:30', end: '2026-02-04T18:00', text: 'Free time — Freshen up before drinks', type: 'info' },
-                { start: '2026-02-04T18:00', end: '2026-02-04T20:30', text: 'Pre-Dinner Drinks at Dóor — Creative cocktails in a refined setting', time: 'From 18:00', type: 'live' },
-                { start: '2026-02-04T20:30', end: '2026-02-04T23:59', text: 'Dinner at To Paradosiako — Authentic neighbourhood taverna', time: 'From 20:30', type: 'live' },
-
-                // Day 3 - Feb 5
-                { start: '2026-02-05T00:00', end: '2026-02-05T10:00', text: 'Free morning — Optional Walking Tour at 10:00', type: 'upcoming' },
-                { start: '2026-02-05T10:00', end: '2026-02-05T13:00', text: 'Optional Walking Tour of Athens', time: 'From 10:00', type: 'live' },
-                { start: '2026-02-05T13:00', end: '2026-02-05T14:00', text: 'Free afternoon — Explore, museums, or relax', type: 'info' },
-                { start: '2026-02-05T14:00', end: '2026-02-05T16:00', text: 'Exec Team Meeting', time: '14:00 – 16:00', type: 'live' },
-                { start: '2026-02-05T16:00', end: '2026-02-05T23:59', text: 'Free evening — Use your dinner allowance at a restaurant of your choice!', type: 'info' },
-
-                // Day 4 - Feb 6
-                { start: '2026-02-06T00:00', end: '2026-02-06T10:00', text: 'Free day — Explore Athens at your leisure', type: 'info' },
-                { start: '2026-02-06T10:00', end: '2026-02-06T12:00', text: 'Exec Team Meeting', time: '10:00 – 12:00', type: 'live' },
-                { start: '2026-02-06T12:00', end: '2026-02-06T19:00', text: 'Free afternoon — Departures begin. Safe travels!', type: 'info' },
-                { start: '2026-02-06T19:00', end: '2026-02-06T23:59', text: 'Free evening — Use your dinner allowance at a restaurant of your choice!', type: 'info' },
-
-                // Post-event departures
-                { start: '2026-02-07T00:00', end: '2026-02-10T23:59', text: 'Departures continue — Safe travels home!', type: 'info' },
-
-                // Post-event
-                { start: '2026-02-11T00:00', end: '2026-12-31T23:59', text: 'Thanks for an amazing Athens Edition 2026!', type: 'info' }
-            ];
+            const schedule = summitSchedule;
 
             const bar = document.getElementById('noticesBar');
             const indicator = document.getElementById('noticesIndicator');
