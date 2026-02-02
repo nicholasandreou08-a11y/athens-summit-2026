@@ -5196,6 +5196,25 @@
         const tabBtns = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
 
+        // Set default tab based on current date in Athens
+        (function setDefaultTab() {
+            var now = new Date();
+            var athens = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Athens' }));
+            var m = athens.getMonth() + 1;
+            var d = athens.getDate();
+            var day = 'arrival';
+            if (m === 2 && d === 3) day = '1';
+            else if (m === 2 && d === 4) day = '2';
+            else if (m === 2 && (d === 5 || d === 6)) day = '3';
+            else if (m === 2 && d >= 7) day = 'departures';
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+            var btn = document.querySelector(`.tab-btn[data-day="${day}"]`);
+            if (btn) btn.classList.add('active');
+            var content = document.getElementById(`day-${day}`);
+            if (content) content.classList.add('active');
+        })();
+
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const day = btn.dataset.day;
