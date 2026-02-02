@@ -655,6 +655,111 @@
             margin-top: 0.5rem;
         }
 
+        /* Breakout Track Allocations */
+        .breakout-tracks {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .breakout-track {
+            background: var(--gray-50);
+            border-radius: 8px;
+            padding: 0.625rem 0.75rem;
+            border-left: 3px solid var(--gray-300);
+        }
+
+        .breakout-track.track-a {
+            border-left-color: #0d9488;
+            background: #f0fdfa;
+        }
+
+        .breakout-track.track-b {
+            border-left-color: #4f46e5;
+            background: #eef2ff;
+        }
+
+        .breakout-track.track-c {
+            border-left-color: #d97706;
+            background: #fffbeb;
+        }
+
+        .track-header {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 0.375rem;
+        }
+
+        .track-participants {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .participant-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            color: var(--gray-700);
+            padding: 0.15rem 0.5rem;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            line-height: 1.4;
+            white-space: nowrap;
+        }
+
+        .participant-chip.facilitator {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+            font-weight: 600;
+        }
+
+        .participant-chip.facilitator::after {
+            content: "(facilitator)";
+            font-size: 0.6rem;
+            font-weight: 400;
+            opacity: 0.85;
+        }
+
+        .participant-chip.flex {
+            border-style: dashed;
+            border-color: var(--gray-400);
+            color: var(--gray-500);
+            background: var(--white);
+        }
+
+        .flex-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+        }
+
+        .flex-note {
+            font-size: 0.7rem;
+            font-style: italic;
+            color: var(--gray-400);
+            margin-right: 0.25rem;
+        }
+
+        /* Session card participant section */
+        .session-participants {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .session-participants > h4 {
+            margin-bottom: 0.75rem;
+        }
+
         /* Sessions Section */
         #sessions {
             background: var(--gray-50);
@@ -2700,8 +2805,53 @@
                         <div class="schedule-time">11:30 - 13:30</div>
                         <div class="schedule-content">
                             <h4>Breakout Sessions: In-Depth Knowledge Transfer</h4>
-                            <p>A: Platform Walkthrough (Sue & Ben) | B: 2025 Releases (Ellie & Rami) | C: Data & Reporting (Vasilis & Aris)</p>
                             <span class="schedule-tag">Choose One</span>
+                            <div class="breakout-tracks">
+                                <div class="breakout-track track-a">
+                                    <div class="track-header">Track A: End to End Platform Walkthrough</div>
+                                    <div class="track-participants">
+                                        <span class="participant-chip facilitator">Sue Williams</span>
+                                        <span class="participant-chip facilitator">Ben Herring</span>
+                                        <span class="participant-chip">Joe McNally</span>
+                                        <span class="participant-chip">Anna Anastasiadou</span>
+                                        <span class="participant-chip">Demis Makris-Colman</span>
+                                        <span class="participant-chip">Jennifer Iris Muggleton</span>
+                                        <span class="participant-chip">Lara Houchou</span>
+                                        <span class="participant-chip">Nikos Kefalas</span>
+                                        <span class="participant-chip">Panagiotis Papadopoulos</span>
+                                        <span class="participant-chip">Ahmed Shahrabani</span>
+                                    </div>
+                                </div>
+                                <div class="breakout-track track-b">
+                                    <div class="track-header">Track B: Deep Dive into 2025 Releases</div>
+                                    <div class="track-participants">
+                                        <span class="participant-chip facilitator">Ellie Sanders</span>
+                                        <span class="participant-chip facilitator">Rami Abdo</span>
+                                        <span class="participant-chip">Emma Williamson</span>
+                                        <span class="participant-chip">Alexia Souvalioti</span>
+                                        <span class="participant-chip">Claire Emmerson</span>
+                                        <span class="participant-chip">Deborah Beck</span>
+                                        <span class="participant-chip">Pavlos Gavrielides</span>
+                                        <span class="participant-chip">Jonathan Hern</span>
+                                        <span class="participant-chip">Kyriacos Mappourides</span>
+                                        <span class="participant-chip">Maria Elisseou</span>
+                                        <span class="participant-chip">Evripides Achilleos</span>
+                                    </div>
+                                </div>
+                                <div class="breakout-track track-c">
+                                    <div class="track-header">Track C: Data, Reporting and the Art of the Possible</div>
+                                    <div class="track-participants">
+                                        <span class="participant-chip facilitator">Vasilis Vasiliou</span>
+                                        <span class="participant-chip facilitator">Aris Panayiotou</span>
+                                        <span class="participant-chip">Nicholas Andreou</span>
+                                        <span class="participant-chip">Panagiotis Nikolaou</span>
+                                        <span class="participant-chip">Emilios Charalambous</span>
+                                        <span class="participant-chip">Andreas Galazis</span>
+                                        <span class="participant-chip">Maria Vostani</span>
+                                        <span class="participant-chip">Naomi Baron</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="schedule-item">
@@ -2714,8 +2864,51 @@
                         <div class="schedule-time">14:30 - 16:30</div>
                         <div class="schedule-content">
                             <h4>Afternoon Breakout Sessions</h4>
-                            <p>A: The Asset Challenge (Maria E) | B: From Ideation to Iteration (Evripides)</p>
                             <span class="schedule-tag">Choose One</span>
+                            <div class="breakout-tracks">
+                                <div class="breakout-track track-a">
+                                    <div class="track-header">Track A: From Ideation to Iteration</div>
+                                    <div class="track-participants">
+                                        <span class="participant-chip facilitator">Evripides Achilleos</span>
+                                        <span class="participant-chip">Nicholas Andreou</span>
+                                        <span class="participant-chip">Emma Williamson</span>
+                                        <span class="participant-chip">Claire Emmerson</span>
+                                        <span class="participant-chip">Panagiotis Nikolaou</span>
+                                        <span class="participant-chip">Rami Abdo</span>
+                                        <span class="participant-chip">Emilios Charalambous</span>
+                                        <span class="participant-chip">Andreas Galazis</span>
+                                        <span class="participant-chip">Anna Anastasiadou</span>
+                                        <span class="participant-chip">Aris Panayiotou</span>
+                                        <span class="participant-chip">Panagiotis Papadopoulos</span>
+                                        <span class="participant-chip">Lara Houchou</span>
+                                        <span class="participant-chip">Nikos Kefalas</span>
+                                        <span class="participant-chip">Sue Williams</span>
+                                    </div>
+                                </div>
+                                <div class="breakout-track track-b">
+                                    <div class="track-header">Track B: The Asset Challenge</div>
+                                    <div class="track-participants">
+                                        <span class="participant-chip facilitator">Maria Elisseou</span>
+                                        <span class="participant-chip">Joe McNally</span>
+                                        <span class="participant-chip">Vasilis Vasiliou</span>
+                                        <span class="participant-chip">Ellie Sanders</span>
+                                        <span class="participant-chip">Deborah Beck</span>
+                                        <span class="participant-chip">Pavlos Gavrielides</span>
+                                        <span class="participant-chip">Ben Herring</span>
+                                        <span class="participant-chip">Jonathan Hern</span>
+                                        <span class="participant-chip">Kyriacos Mappourides</span>
+                                        <span class="participant-chip">Maria Vostani</span>
+                                        <span class="participant-chip">Naomi Baron</span>
+                                        <span class="participant-chip">Demis Makris-Colman</span>
+                                        <span class="participant-chip">Jennifer Iris Muggleton</span>
+                                        <span class="participant-chip">Ahmed Shahrabani</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-group">
+                                <span class="flex-note">Flex:</span>
+                                <span class="participant-chip flex">Alexia Souvalioti</span>
+                            </div>
                         </div>
                     </div>
                     <div class="schedule-item">
@@ -2761,8 +2954,51 @@
                         <div class="schedule-time">10:30 - 13:00</div>
                         <div class="schedule-content">
                             <h4>Morning Breakout Sessions</h4>
-                            <p>A: Rates and Demand Control Part 2 (Pan N) | B: National Staff Bank Strategy Part 1 (Ahmed)</p>
                             <span class="schedule-tag">Choose One</span>
+                            <div class="breakout-tracks">
+                                <div class="breakout-track track-a">
+                                    <div class="track-header">Track A: Rates and Demand Control Part 2</div>
+                                    <div class="track-participants">
+                                        <span class="participant-chip facilitator">Panagiotis Nikolaou</span>
+                                        <span class="participant-chip">Nicholas Andreou</span>
+                                        <span class="participant-chip">Emma Williamson</span>
+                                        <span class="participant-chip">Ellie Sanders</span>
+                                        <span class="participant-chip">Claire Emmerson</span>
+                                        <span class="participant-chip">Emilios Charalambous</span>
+                                        <span class="participant-chip">Ben Herring</span>
+                                        <span class="participant-chip">Jonathan Hern</span>
+                                        <span class="participant-chip">Kyriacos Mappourides</span>
+                                        <span class="participant-chip">Andreas Galazis</span>
+                                        <span class="participant-chip">Anna Anastasiadou</span>
+                                        <span class="participant-chip">Aris Panayiotou</span>
+                                        <span class="participant-chip">Panagiotis Papadopoulos</span>
+                                        <span class="participant-chip">Naomi Baron</span>
+                                        <span class="participant-chip">Evripides Achilleos</span>
+                                    </div>
+                                </div>
+                                <div class="breakout-track track-b">
+                                    <div class="track-header">Track B: National Staff Bank Strategy Part 1</div>
+                                    <div class="track-participants">
+                                        <span class="participant-chip facilitator">Ahmed Shahrabani</span>
+                                        <span class="participant-chip">Joe McNally</span>
+                                        <span class="participant-chip">Vasilis Vasiliou</span>
+                                        <span class="participant-chip">Deborah Beck</span>
+                                        <span class="participant-chip">Maria Elisseou</span>
+                                        <span class="participant-chip">Maria Vostani</span>
+                                        <span class="participant-chip">Demis Makris-Colman</span>
+                                        <span class="participant-chip">Jennifer Iris Muggleton</span>
+                                        <span class="participant-chip">Lara Houchou</span>
+                                        <span class="participant-chip">Nikos Kefalas</span>
+                                        <span class="participant-chip">Sue Williams</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-group">
+                                <span class="flex-note">Flex:</span>
+                                <span class="participant-chip flex">Alexia Souvalioti</span>
+                                <span class="participant-chip flex">Pavlos Gavrielides</span>
+                                <span class="participant-chip flex">Rami Abdo</span>
+                            </div>
                         </div>
                     </div>
                     <div class="schedule-item">
@@ -2775,8 +3011,51 @@
                         <div class="schedule-time">14:00 - 17:00</div>
                         <div class="schedule-content">
                             <h4>Afternoon Sessions</h4>
-                            <p>A: Timesheet Self Service Discovery (Aris) | B: National Staff Bank Strategy Part 2 (Ahmed)</p>
                             <span class="schedule-tag">Choose One</span>
+                            <div class="breakout-tracks">
+                                <div class="breakout-track track-a">
+                                    <div class="track-header">Track A: Timesheet Self Service</div>
+                                    <div class="track-participants">
+                                        <span class="participant-chip facilitator">Aris Panayiotou</span>
+                                        <span class="participant-chip">Nicholas Andreou</span>
+                                        <span class="participant-chip">Emma Williamson</span>
+                                        <span class="participant-chip">Vasilis Vasiliou</span>
+                                        <span class="participant-chip">Ellie Sanders</span>
+                                        <span class="participant-chip">Deborah Beck</span>
+                                        <span class="participant-chip">Emilios Charalambous</span>
+                                        <span class="participant-chip">Ben Herring</span>
+                                        <span class="participant-chip">Andreas Galazis</span>
+                                        <span class="participant-chip">Anna Anastasiadou</span>
+                                        <span class="participant-chip">Panagiotis Papadopoulos</span>
+                                        <span class="participant-chip">Naomi Baron</span>
+                                        <span class="participant-chip">Evripides Achilleos</span>
+                                    </div>
+                                </div>
+                                <div class="breakout-track track-b">
+                                    <div class="track-header">Track B: National Staff Bank Strategy Part 2</div>
+                                    <div class="track-participants">
+                                        <span class="participant-chip facilitator">Ahmed Shahrabani</span>
+                                        <span class="participant-chip">Joe McNally</span>
+                                        <span class="participant-chip">Claire Emmerson</span>
+                                        <span class="participant-chip">Panagiotis Nikolaou</span>
+                                        <span class="participant-chip">Jonathan Hern</span>
+                                        <span class="participant-chip">Kyriacos Mappourides</span>
+                                        <span class="participant-chip">Maria Elisseou</span>
+                                        <span class="participant-chip">Maria Vostani</span>
+                                        <span class="participant-chip">Demis Makris-Colman</span>
+                                        <span class="participant-chip">Jennifer Iris Muggleton</span>
+                                        <span class="participant-chip">Lara Houchou</span>
+                                        <span class="participant-chip">Nikos Kefalas</span>
+                                        <span class="participant-chip">Sue Williams</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-group">
+                                <span class="flex-note">Flex:</span>
+                                <span class="participant-chip flex">Alexia Souvalioti</span>
+                                <span class="participant-chip flex">Pavlos Gavrielides</span>
+                                <span class="participant-chip flex">Rami Abdo</span>
+                            </div>
                         </div>
                     </div>
                     <div class="schedule-item">
@@ -3141,6 +3420,56 @@
                             <p><em>Facilitators: Vasilis and Aris</em></p>
                             <p>This session will explore the data and reporting capabilities available within Locum's Nest, examining how reports are currently used internally and with customers.</p>
                             <p>The discussion will be deliberately exploratory, highlighting existing value while encouraging participants to think creatively about future opportunities and unmet needs. Representatives from the technical teams will join to share context on how data is generated, structured, and constrained, helping bridge understanding between what exists today and what could realistically be developed next.</p>
+
+                            <div class="session-participants">
+                                <h4>Participants</h4>
+                                <div class="breakout-tracks">
+                                    <div class="breakout-track track-a">
+                                        <div class="track-header">Track A: End to End Platform Walkthrough</div>
+                                        <div class="track-participants">
+                                            <span class="participant-chip facilitator">Sue Williams</span>
+                                            <span class="participant-chip facilitator">Ben Herring</span>
+                                            <span class="participant-chip">Joe McNally</span>
+                                            <span class="participant-chip">Anna Anastasiadou</span>
+                                            <span class="participant-chip">Demis Makris-Colman</span>
+                                            <span class="participant-chip">Jennifer Iris Muggleton</span>
+                                            <span class="participant-chip">Lara Houchou</span>
+                                            <span class="participant-chip">Nikos Kefalas</span>
+                                            <span class="participant-chip">Panagiotis Papadopoulos</span>
+                                            <span class="participant-chip">Ahmed Shahrabani</span>
+                                        </div>
+                                    </div>
+                                    <div class="breakout-track track-b">
+                                        <div class="track-header">Track B: Deep Dive into 2025 Releases</div>
+                                        <div class="track-participants">
+                                            <span class="participant-chip facilitator">Ellie Sanders</span>
+                                            <span class="participant-chip facilitator">Rami Abdo</span>
+                                            <span class="participant-chip">Emma Williamson</span>
+                                            <span class="participant-chip">Alexia Souvalioti</span>
+                                            <span class="participant-chip">Claire Emmerson</span>
+                                            <span class="participant-chip">Deborah Beck</span>
+                                            <span class="participant-chip">Pavlos Gavrielides</span>
+                                            <span class="participant-chip">Jonathan Hern</span>
+                                            <span class="participant-chip">Kyriacos Mappourides</span>
+                                            <span class="participant-chip">Maria Elisseou</span>
+                                            <span class="participant-chip">Evripides Achilleos</span>
+                                        </div>
+                                    </div>
+                                    <div class="breakout-track track-c">
+                                        <div class="track-header">Track C: Data, Reporting and the Art of the Possible</div>
+                                        <div class="track-participants">
+                                            <span class="participant-chip facilitator">Vasilis Vasiliou</span>
+                                            <span class="participant-chip facilitator">Aris Panayiotou</span>
+                                            <span class="participant-chip">Nicholas Andreou</span>
+                                            <span class="participant-chip">Panagiotis Nikolaou</span>
+                                            <span class="participant-chip">Emilios Charalambous</span>
+                                            <span class="participant-chip">Andreas Galazis</span>
+                                            <span class="participant-chip">Maria Vostani</span>
+                                            <span class="participant-chip">Naomi Baron</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3173,6 +3502,35 @@
                                 <li>Agreement on which assets become standard and what needs iteration</li>
                                 <li>Owners and next steps to finalise, test, and roll out the materials</li>
                             </ul>
+
+                            <div class="session-participants">
+                                <h4>Participants</h4>
+                                <div class="breakout-tracks">
+                                    <div class="breakout-track track-b">
+                                        <div class="track-header">Track B Participants</div>
+                                        <div class="track-participants">
+                                            <span class="participant-chip facilitator">Maria Elisseou</span>
+                                            <span class="participant-chip">Joe McNally</span>
+                                            <span class="participant-chip">Vasilis Vasiliou</span>
+                                            <span class="participant-chip">Ellie Sanders</span>
+                                            <span class="participant-chip">Deborah Beck</span>
+                                            <span class="participant-chip">Pavlos Gavrielides</span>
+                                            <span class="participant-chip">Ben Herring</span>
+                                            <span class="participant-chip">Jonathan Hern</span>
+                                            <span class="participant-chip">Kyriacos Mappourides</span>
+                                            <span class="participant-chip">Maria Vostani</span>
+                                            <span class="participant-chip">Naomi Baron</span>
+                                            <span class="participant-chip">Demis Makris-Colman</span>
+                                            <span class="participant-chip">Jennifer Iris Muggleton</span>
+                                            <span class="participant-chip">Ahmed Shahrabani</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-group">
+                                    <span class="flex-note">Flex:</span>
+                                    <span class="participant-chip flex">Alexia Souvalioti</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3211,6 +3569,35 @@
                                 <li>Key challenges and failure points observed in recent product work</li>
                                 <li>Agreed learnings and principles to carry forward into future initiatives and agreed areas to keep exploring in further workshops</li>
                             </ul>
+
+                            <div class="session-participants">
+                                <h4>Participants</h4>
+                                <div class="breakout-tracks">
+                                    <div class="breakout-track track-a">
+                                        <div class="track-header">Track A Participants</div>
+                                        <div class="track-participants">
+                                            <span class="participant-chip facilitator">Evripides Achilleos</span>
+                                            <span class="participant-chip">Nicholas Andreou</span>
+                                            <span class="participant-chip">Emma Williamson</span>
+                                            <span class="participant-chip">Claire Emmerson</span>
+                                            <span class="participant-chip">Panagiotis Nikolaou</span>
+                                            <span class="participant-chip">Rami Abdo</span>
+                                            <span class="participant-chip">Emilios Charalambous</span>
+                                            <span class="participant-chip">Andreas Galazis</span>
+                                            <span class="participant-chip">Anna Anastasiadou</span>
+                                            <span class="participant-chip">Aris Panayiotou</span>
+                                            <span class="participant-chip">Panagiotis Papadopoulos</span>
+                                            <span class="participant-chip">Lara Houchou</span>
+                                            <span class="participant-chip">Nikos Kefalas</span>
+                                            <span class="participant-chip">Sue Williams</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-group">
+                                    <span class="flex-note">Flex:</span>
+                                    <span class="participant-chip flex">Alexia Souvalioti</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3248,6 +3635,38 @@
                                 <li>Consolidated usability feedback and key learnings from our journey so far</li>
                                 <li>A high-level solution direction and proposed phased development approach</li>
                             </ul>
+
+                            <div class="session-participants">
+                                <h4>Part 2 Breakout Participants</h4>
+                                <div class="breakout-tracks">
+                                    <div class="breakout-track track-a">
+                                        <div class="track-header">Track A: Rates and Demand Control Part 2</div>
+                                        <div class="track-participants">
+                                            <span class="participant-chip facilitator">Panagiotis Nikolaou</span>
+                                            <span class="participant-chip">Nicholas Andreou</span>
+                                            <span class="participant-chip">Emma Williamson</span>
+                                            <span class="participant-chip">Ellie Sanders</span>
+                                            <span class="participant-chip">Claire Emmerson</span>
+                                            <span class="participant-chip">Emilios Charalambous</span>
+                                            <span class="participant-chip">Ben Herring</span>
+                                            <span class="participant-chip">Jonathan Hern</span>
+                                            <span class="participant-chip">Kyriacos Mappourides</span>
+                                            <span class="participant-chip">Andreas Galazis</span>
+                                            <span class="participant-chip">Anna Anastasiadou</span>
+                                            <span class="participant-chip">Aris Panayiotou</span>
+                                            <span class="participant-chip">Panagiotis Papadopoulos</span>
+                                            <span class="participant-chip">Naomi Baron</span>
+                                            <span class="participant-chip">Evripides Achilleos</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-group">
+                                    <span class="flex-note">Flex:</span>
+                                    <span class="participant-chip flex">Alexia Souvalioti</span>
+                                    <span class="participant-chip flex">Pavlos Gavrielides</span>
+                                    <span class="participant-chip flex">Rami Abdo</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3298,6 +3717,52 @@
                                 <li>A high-level roadmap with company-wide milestones</li>
                                 <li>Agreed next steps to take the strategy into validation and delivery</li>
                             </ul>
+
+                            <div class="session-participants">
+                                <h4>Participants</h4>
+                                <div class="breakout-tracks">
+                                    <div class="breakout-track track-b">
+                                        <div class="track-header">Part 1 (Morning)</div>
+                                        <div class="track-participants">
+                                            <span class="participant-chip facilitator">Ahmed Shahrabani</span>
+                                            <span class="participant-chip">Joe McNally</span>
+                                            <span class="participant-chip">Vasilis Vasiliou</span>
+                                            <span class="participant-chip">Deborah Beck</span>
+                                            <span class="participant-chip">Maria Elisseou</span>
+                                            <span class="participant-chip">Maria Vostani</span>
+                                            <span class="participant-chip">Demis Makris-Colman</span>
+                                            <span class="participant-chip">Jennifer Iris Muggleton</span>
+                                            <span class="participant-chip">Lara Houchou</span>
+                                            <span class="participant-chip">Nikos Kefalas</span>
+                                            <span class="participant-chip">Sue Williams</span>
+                                        </div>
+                                    </div>
+                                    <div class="breakout-track track-b">
+                                        <div class="track-header">Part 2 (Afternoon)</div>
+                                        <div class="track-participants">
+                                            <span class="participant-chip facilitator">Ahmed Shahrabani</span>
+                                            <span class="participant-chip">Joe McNally</span>
+                                            <span class="participant-chip">Claire Emmerson</span>
+                                            <span class="participant-chip">Panagiotis Nikolaou</span>
+                                            <span class="participant-chip">Jonathan Hern</span>
+                                            <span class="participant-chip">Kyriacos Mappourides</span>
+                                            <span class="participant-chip">Maria Elisseou</span>
+                                            <span class="participant-chip">Maria Vostani</span>
+                                            <span class="participant-chip">Demis Makris-Colman</span>
+                                            <span class="participant-chip">Jennifer Iris Muggleton</span>
+                                            <span class="participant-chip">Lara Houchou</span>
+                                            <span class="participant-chip">Nikos Kefalas</span>
+                                            <span class="participant-chip">Sue Williams</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-group">
+                                    <span class="flex-note">Flex (both parts):</span>
+                                    <span class="participant-chip flex">Alexia Souvalioti</span>
+                                    <span class="participant-chip flex">Pavlos Gavrielides</span>
+                                    <span class="participant-chip flex">Rami Abdo</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3332,6 +3797,36 @@
                                 <li>Agreed principles for rollout, launch, and operational readiness</li>
                                 <li>Clear next steps to progress into development and delivery</li>
                             </ul>
+
+                            <div class="session-participants">
+                                <h4>Participants</h4>
+                                <div class="breakout-tracks">
+                                    <div class="breakout-track track-a">
+                                        <div class="track-header">Track A Participants</div>
+                                        <div class="track-participants">
+                                            <span class="participant-chip facilitator">Aris Panayiotou</span>
+                                            <span class="participant-chip">Nicholas Andreou</span>
+                                            <span class="participant-chip">Emma Williamson</span>
+                                            <span class="participant-chip">Vasilis Vasiliou</span>
+                                            <span class="participant-chip">Ellie Sanders</span>
+                                            <span class="participant-chip">Deborah Beck</span>
+                                            <span class="participant-chip">Emilios Charalambous</span>
+                                            <span class="participant-chip">Ben Herring</span>
+                                            <span class="participant-chip">Andreas Galazis</span>
+                                            <span class="participant-chip">Anna Anastasiadou</span>
+                                            <span class="participant-chip">Panagiotis Papadopoulos</span>
+                                            <span class="participant-chip">Naomi Baron</span>
+                                            <span class="participant-chip">Evripides Achilleos</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-group">
+                                    <span class="flex-note">Flex:</span>
+                                    <span class="participant-chip flex">Alexia Souvalioti</span>
+                                    <span class="participant-chip flex">Pavlos Gavrielides</span>
+                                    <span class="participant-chip flex">Rami Abdo</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
