@@ -29,6 +29,7 @@ SCHEDULE = [
     {"start": "2026-02-02T20:30", "end": "2026-02-02T23:59", "text": "Dinner at Kalamaki Bar — Traditional Greek taverna", "time": "From 20:30", "type": "live"},
 
     # Day 1 - Feb 3
+    {"start": "2026-02-03T08:45", "end": "2026-02-03T09:00", "text": "Good morning! <https://nicholasandreou08-a11y.github.io/athens-summit-2026/?key=owl-together-now|View the agenda>", "time": "08:45", "type": "info"},
     {"start": "2026-02-03T09:00", "end": "2026-02-03T09:30", "text": "Welcome to the Summit", "time": "09:00 – 09:30", "type": "live"},
     {"start": "2026-02-03T09:30", "end": "2026-02-03T10:30", "text": "Locum's Nest in Numbers", "time": "09:30 – 10:30", "type": "live"},
     {"start": "2026-02-03T10:30", "end": "2026-02-03T10:45", "text": "Break — Grab a coffee!", "time": "10:30 – 10:45", "type": "info"},
@@ -42,7 +43,8 @@ SCHEDULE = [
     {"start": "2026-02-03T22:00", "end": "2026-02-03T23:59", "text": "Optional After Dinner Drinks — 360, A for Athens, City Zen or Ciel", "time": "From 22:00", "type": "info"},
 
     # Day 2 - Feb 4
-    {"start": "2026-02-04T00:00", "end": "2026-02-04T09:00", "text": "Day 2 starts at 09:00 — Good morning Athens!", "type": "upcoming"},
+    {"start": "2026-02-04T00:00", "end": "2026-02-04T08:45", "text": "Day 2 starts at 09:00 — Good morning Athens!", "type": "upcoming"},
+    {"start": "2026-02-04T08:45", "end": "2026-02-04T09:00", "text": "Good morning! <https://nicholasandreou08-a11y.github.io/athens-summit-2026/?key=owl-together-now|View the agenda>", "time": "08:45", "type": "info"},
     {"start": "2026-02-04T09:00", "end": "2026-02-04T09:30", "text": "Welcome to Day 2", "time": "09:00 – 09:30", "type": "live"},
     {"start": "2026-02-04T09:30", "end": "2026-02-04T10:30", "text": "Product Discovery: Rates and Demand Control", "time": "09:30 – 10:30", "type": "live"},
     {"start": "2026-02-04T10:30", "end": "2026-02-04T13:00", "text": "Morning Breakouts — Track A: Rates & Demand Control | Track B: National Staff Bank Strategy", "time": "10:30 – 13:00", "type": "live"},
@@ -54,7 +56,8 @@ SCHEDULE = [
     {"start": "2026-02-04T20:30", "end": "2026-02-04T23:59", "text": "Dinner at To Paradosiako — Authentic neighbourhood taverna", "time": "From 20:30", "type": "live"},
 
     # Day 3 - Feb 5
-    {"start": "2026-02-05T00:00", "end": "2026-02-05T10:00", "text": "Free morning — Optional Walking Tour at 10:00", "type": "upcoming"},
+    {"start": "2026-02-05T00:00", "end": "2026-02-05T08:45", "text": "Free morning — Optional Walking Tour at 10:00", "type": "upcoming"},
+    {"start": "2026-02-05T08:45", "end": "2026-02-05T10:00", "text": "Good morning! <https://nicholasandreou08-a11y.github.io/athens-summit-2026/?key=owl-together-now|View the agenda>", "time": "08:45", "type": "info"},
     {"start": "2026-02-05T10:00", "end": "2026-02-05T13:00", "text": "Optional Walking Tour of Athens", "time": "From 10:00", "type": "live"},
     {"start": "2026-02-05T13:00", "end": "2026-02-05T14:00", "text": "Free afternoon — Explore, museums, or relax", "type": "info"},
     {"start": "2026-02-05T14:00", "end": "2026-02-05T16:00", "text": "Exec Team Meeting", "time": "14:00 – 16:00", "type": "live"},
@@ -95,7 +98,9 @@ def find_active_event(now):
 
 def build_message(event):
     indicator, label = TYPE_INDICATORS.get(event["type"], ("\u2139\ufe0f", "Notice"))
-    text = re.sub(r"<[^>]+>", "", event["text"])
+    text = event["text"]
+    # Strip HTML tags but preserve Slack links <URL|text>
+    text = re.sub(r"<(?!https?://)[^>]+>", "", text)
     msg = f"{indicator} *{label}* — {text}"
     if event.get("time"):
         msg += f"  ·  {event['time']}"
