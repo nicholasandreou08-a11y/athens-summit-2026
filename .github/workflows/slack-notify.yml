@@ -1,9 +1,9 @@
 name: Slack Summit Notifications
 
 on:
-  schedule:
-    - cron: '*/5 * 1-11 2 *' # Every 5 min, Feb 1–11
-  workflow_dispatch: # Manual trigger for testing
+  # schedule:
+  #   - cron: '*/5 * 1-11 2 *' # Disabled - using local Mac instead
+  workflow_dispatch: # Manual trigger for backup
 
 jobs:
   notify:
