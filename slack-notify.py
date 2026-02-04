@@ -60,7 +60,7 @@ SCHEDULE = [
 
     # Day 3 - Feb 5
     {"start": "2026-02-05T00:00", "end": "2026-02-05T08:45", "text": "Free morning — Optional Walking Tour at 10:00", "type": "upcoming"},
-    {"start": "2026-02-05T08:45", "end": "2026-02-05T10:00", "text": "Good morning! <https://nicholasandreou08-a11y.github.io/athens-summit-2026/?key=owl-together-now|View the agenda>", "time": "08:45", "type": "info"},
+    {"start": "2026-02-05T08:45", "end": "2026-02-05T10:00", "text": "Free day! Ad hoc team work optional. €30 food/drinks allowance — expense as \"summit sustenance\" on Xero (receipts desirable but not essential)", "time": "08:45", "type": "info"},
     {"start": "2026-02-05T10:00", "end": "2026-02-05T13:00", "text": "Optional Walking Tour of Athens", "time": "From 10:00", "type": "live"},
     {"start": "2026-02-05T13:00", "end": "2026-02-05T14:00", "text": "Free afternoon — Explore, museums, or relax", "type": "info"},
     {"start": "2026-02-05T14:00", "end": "2026-02-05T16:00", "text": "Exec Team Meeting", "time": "14:00 – 16:00", "type": "live"},
